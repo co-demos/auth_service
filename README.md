@@ -1,8 +1,10 @@
-<h1 align=center>  SOLIDATA <br> backend</h1>
+<h1 align=center> AUTH SERVICE </h1>
 
 
 -------
 ## PRESENTATION
+
+auth server extracted / insulated from solidata_backend
 
 part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
 
@@ -30,8 +32,6 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 - _API_       : **[Flask-RestPlus](http://flask-restplus.readthedocs.io/en/stable/)**... Swagger documentation integrated
 - _Security_  : **[Flask-JWT-extended](https://flask-jwt-extended.readthedocs.io/en/latest/)**... wrapper JWT for Flask
 - _Emailing_  : **[Flask-email](https://pythonhosted.org/Flask-Mail/)**... templating, sending, etc...
-- _Data management_  : **[Pandas](http://pandas.pydata.org/)**... to do operations on datasets...
-- _Geocoding_  : **[Geopy](https://geopy.readthedocs.io/en/stable/)**... to use several geocoder : Nominatim, BAN, etc...
 
 #### Features :
 
@@ -50,14 +50,7 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 - user : 
 	- edit user
 	- edit email
-- add/edit a project : 
-	- edit project infos : licence, author, title...
-	- edit team and access levels
-	- add project to users involved
-	- delete project
-- import data : 
-	- data as csv / excel sheets...
-	- data as api endpoints to request... 
+
 
 -------
 
@@ -182,10 +175,5 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 -------
 ![alt text](./screenshots/endpoints_auth_server.png "endpoint auth users")
 
--------
-![alt text](./screenshots/endpoints_projects.png "endpoint projects")
-
--------
-![alt text](./screenshots/endpoints_dataset_inputs.png "endpoint dataset inputs")
 
 
