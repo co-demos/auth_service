@@ -8,7 +8,7 @@ from log_config import log, pformat
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 from flask_socketio import SocketIO
 
-from solidata_api.application import create_app
+from auth_api.application import create_app
 
 app = create_app( app_name='SOLIDATA_API', run_mode="prod" )
 

@@ -11,10 +11,10 @@ git --version
 
 for each : 
 ```
-cd /var/www/solidata-preprod.co-demos.com
-cd /var/www/solidata.co-demos.com
-cd /var/www/solidata-preprod-api.co-demos.com
-cd /var/www/solidata-api.co-demos.com
+cd /var/www/auth-preprod.co-demos.com
+cd /var/www/auth.co-demos.com
+cd /var/www/auth-preprod-api.co-demos.com
+cd /var/www/auth-api.co-demos.com
 ```
 …
 < do >
@@ -25,20 +25,20 @@ git init .
 
 < add remote repo links >
 ```
-git remote add origin https://github.com/entrepreneur-interet-general/solidata_frontend.git
+git remote add origin https://github.com/entrepreneur-interet-general/auth_frontend.git
 ```
 OR 
 ```
-git remote add origin https://github.com/entrepreneur-interet-general/solidata_backend.git
+git remote add origin https://github.com/entrepreneur-interet-general/auth_backend.git
 ```
 -------------
 < if need for reset remote’s url : >
 ```
-git remote set-url origin https://github.com/entrepreneur-interet-general/solidata_frontend.git
+git remote set-url origin https://github.com/entrepreneur-interet-general/auth_frontend.git
 ```
 OR
 ```
-git remote set-url origin https://github.com/entrepreneur-interet-general/solidata_backend.git
+git remote set-url origin https://github.com/entrepreneur-interet-general/auth_backend.git
 ```
 
 ------------

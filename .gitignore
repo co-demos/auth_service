@@ -6,6 +6,11 @@ __pycache__/
 # config_prod
 config_prod.py
 
+# VS files 
+*.vscode
+.vscode/
+.vscode/*
+
 # snippets folder
 _snippets/
 

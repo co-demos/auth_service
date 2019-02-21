@@ -31,9 +31,11 @@ from flask_socketio import SocketIO
 
 @click.command()
 @click.option('--mode', default="dev", 	nargs=1,	help="The <mode> you need to run the app : dev, dev_email, prod, preprod" )
+@click.option('--salt', default="yes", 	nargs=1,	help="The <salt> mode : no, yes" )
+@click.option('--anojwt', default="yes", 	nargs=1,	help="The <anojwt> mode : no, yes" )
 @click.option('--host', default="None", nargs=1,	help="The <host> name you want the app to run on : <IP_NUMBER> " )
 @click.option('--port', default="None", nargs=1,	help="The <port> number you want the app to run on : <PORT_NUMBER>")
-def app_runner(mode, host, port) : 
+def app_runner(mode, host, port, salt, anojwt) : 
 
 	""" 
 	runner for the SOLIDATA backend Flask app 
@@ -45,6 +47,8 @@ def app_runner(mode, host, port) :
 	--mode 	: dev | prod | dev_email 
 	--host	: 
 	--port	: 
+	--anojwt : 
+	--salt : 
 
 	"""
 
@@ -60,14 +64,16 @@ def app_runner(mode, host, port) :
 	log.debug("=== mode : %s", mode)
 	log.debug("=== host : %s", host)
 	log.debug("=== port : %s", port)
+	log.debug("=== salt : %s", salt)
+	log.debug("=== anojwt : %s", anojwt)
 	print()
 
 
-	log.debug("\n--- STARTING SOLIDATA API ---\n")
+	log.debug("\n--- STARTING AUTH API ---\n")
 
-	from solidata_api.application import create_app
+	from auth_api.application import create_app
 
-	app = create_app( app_name='SOLIDATA_API', run_mode=mode )
+	app = create_app( app_name='AUTH_API', run_mode=mode )
 	
 	### apply / overwrites host configuration
 	if host == "None" : 

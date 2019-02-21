@@ -63,36 +63,50 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 
 - create a virtual environment for Python3
 	
-	```
+	```bash
 	python3 -m venv venv
+	source venv/bin/activate
 	pip install --upgrade pip
 	pip install -r requirements.txt
 	```
 
-- create a secret config_file `config_prod.py` in the folder `./solidata_api` based 
+- create a secret config_file `config_prod.py` in the folder `./auth_api` based 
 
-	```
-	cp ./solidata_api/config_pro_exampled.py ./solidata_api/config_prod.py
-	nano ./solidata_api/config_prod.py 
+	```bash
+	cp ./auth_api/config_prod_example.py ./auth_api/config_prod.py
+	nano ./auth_api/config_prod.py 
 	```
 
 - pay attention at the MONGO_URI variable depending on your local mongodb configuration...
 	- The following is the standard URI connection scheme (from [mongo documentation](https://docs.mongodb.com/manual/reference/connection-string/)):
-		```
+		```bash
 		mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
 		```
 
-- run the app in dev mode (without possibility to send email) : 
+- run the app in `default` mode (without possibility to send email) : 
 
-	```
-	$ python appserver.py --mode=dev
+	```bash
+	$ python appserver.py
 	``` 
 
 - run the app in dev mode (with possibility to send email) : 
 
-	```
+	```bash
 	$ python appserver.py --mode=dev_email
 	``` 
+
+- test the following urls 
+	
+	```
+	http://localhost:4000/api/auth/documentation
+	http://localhost:4000/api/usr/documentation
+	```
+
+- < if no longer needed deactivate your virtual environment >
+
+	```bash
+	deactivate
+	```
 
 ### _PRODUCTION_
 
@@ -123,7 +137,7 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 
 - install git on your server
 	- cf : [ docs 1 ](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04)	- basically : 
-		```
+		```bash
 		sudo apt-get update
 		sudo apt-get install git
 		git --version
@@ -139,7 +153,7 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 
 - run the app in production mode (with possibility to send email) : 
 
-	```
+	```bash
 	$ python appserver.py --mode=production
 	``` 
 
