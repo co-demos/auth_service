@@ -190,7 +190,7 @@ In practice :
 	- go to your directory and init git :
 		```
 		git init . 
-		git remote add origin https://github.com/entrepreneur-interet-general/solidata_backend.git
+		git remote add origin https://github.com/co-demos/toktok.git
 		git pull origin master
 		```
 
@@ -201,6 +201,8 @@ In practice :
 	```bash 
 	python appserver.py --mode=production
 	``` 
+
+- it is advised to set up some service on the server to run the app as daemon. You could use supervisor for instance (check our [snippets and walkthrough here](./prod_snippets/prod_supervisor.md))
 
 ------
 
