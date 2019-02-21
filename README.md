@@ -1,6 +1,6 @@
 <div align=center> 
-	<h1>OPEN AUTH MICROSERVICE </h1>
-	<h4>aka TokTok</h4>
+	<h2>an open source <br> authentication REST API microservice </h2>
+	<!-- <h4>aka TokTok</h4> -->
 </div>
 
 ---------
@@ -12,19 +12,12 @@
 -------
 ## PRESENTATION
 
-#### An REST API for an open source user manager and authentication microservice
+#### _TokTok_ is a microservice (a REST API) for users management and authentication based on access and refresh JSON Web Tokens (JWT)
 
-- this auth server was extracted / insulated / adapted from solidata_backend
-- compatible with TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
+- this auth server was extracted / insulated / forked / adapted from **[solidata_backend](https://github.com/entrepreneur-interet-general/solidata_backend)** project.
+- compatible with the **TADATA!** sofware suite ( [ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
 
 
-
---------
-
-## DEVELOPPERS
-
-- Please check out our **[guidelines](./GUIDELINES_DEV.md)** first
-- Check also the **[`prod_snippets`](./prod_snippets)** if you encounter problems while installing locally or setting your server : [install mongodb](./prod_snippets/prod_mongodb.md), [set up supervisor](./prod_snippets/prod_supervisor.md), [set up git](./prod_snippets/prod_git.md), [set up nginx](./prod_snippets/prod_nginx.md), [set up ubuntu](./prod_snippets/prod_ubuntu.md)...
 
 -------
 
@@ -32,6 +25,14 @@
 
 - a simple server to manage users and authorizations based on JWT exchanges between client and server
 - possibility to switch on/off some extra features as : RSA decryption/encryption, anonymous JWT 
+
+--------
+
+## DEVELOPERS
+
+- Hi! Nice to see you around :)
+- Check also the **[`prod_snippets`](./prod_snippets)** if you encounter problems while installing locally or setting your server : [install mongodb](./prod_snippets/prod_mongodb.md), [set up supervisor](./prod_snippets/prod_supervisor.md), [set up git](./prod_snippets/prod_git.md), [set up nginx](./prod_snippets/prod_nginx.md), [set up ubuntu](./prod_snippets/prod_ubuntu.md)...
+- If you want to contribute please check out our **[guidelines](./GUIDELINES_DEV.md)** first
 
 
 ------
@@ -57,7 +58,7 @@
 	- password forgotten by sending a link (protected) in an email with redirection to new password form 
 	- reset password from client interface (protected) ...
 - Documentation 
-	- on all API endpoints with Swagger (and some patience from the developer)
+	- on all API endpoints with Swagger (and some patience from the developers)
 
 ##### Features TO DO  :
 - user : 
@@ -72,7 +73,10 @@
 ### _LOCALLY_
 
 - clone / fork the depo 
-	...
+
+	```bash 
+	git clone https://github.com/co-demos/toktok.git
+	```
 
 - create a virtual environment for Python3
 	
@@ -83,7 +87,7 @@
 	pip install -r requirements.txt
 	```
 
-- create a secret config_file `config_prod.py` in the folder `./auth_api` based 
+- **optionnal** : create a secret config_file `config_prod.py` in the folder `./auth_api` based 
 
 	```bash
 	cp ./auth_api/config_prod_example.py ./auth_api/config_prod.py
@@ -96,20 +100,20 @@
 		mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
 		```
 
-- run the app in `default` mode (without possibility to send email) : 
+- run the app in itts default mode (without possibility to send email) :
 
 	```bash
 	python appserver.py
 	``` 
 
-- test the following urls 
+- test the following urls :
 	
 	```
 	http://localhost:4100/api/auth/documentation
 	http://localhost:4100/api/usr/documentation
 	```
 
-- < if no longer needed deactivate your virtual environment >
+- once you stop the app if no longer needed deactivate your virtual environment
 
 	```bash
 	deactivate
@@ -118,11 +122,11 @@
 ### _CLI OPTIONS_
 
 There are some options you can play with while running the service :
-- `--mode` : `default` (default), `dev_email`, `preprod`, `production`
+- `--mode` : `dev` (default), `dev_email`, `preprod`, `production`
 - `--host` : the IP of your server (default : `localhost`)
 - `--port` : the port you want to run the app on (default : `4100`)
 - `--salt` : if you receive the login|register forms encrypted (default : `yes`))
-- `--anojwt` : if you need to check the presence/validity of an "anonymous_jwt" in the request (default : `yes`) 
+- `--anojwt` : if you need to check the presence/validity of an "anonymous_jwt" in the request (default : `yes`), particularly at the `/login` and `/register` endpoints
 
 In practice : 
 
@@ -138,7 +142,7 @@ In practice :
 	python appserver.py --salt=no
 	``` 
 
-- you can choose to deactivate the check for a anonymous JWT in the `login` and `register` endpoints
+- you can choose to deactivate the check for an anonymous JWT in the `login` and `register` endpoints
 
 	```bash
 	python appserver.py --anojwt=no

@@ -44,11 +44,11 @@ def app_runner(mode, host, port, salt, anojwt) :
 	"python appserver.py"
 
 	you can also enter some arguments in command line : 
-	--mode 	: dev | prod | dev_email 
-	--host	: 
-	--port	: 
-	--anojwt : 
-	--salt : 
+	--mode 		: dev | prod | dev_email 
+	--host		: localhost | <your_IP>
+	--port		: <your_favorite_port>
+	--anojwt 	: yes | no
+	--salt 		: yes | no
 
 	"""
 

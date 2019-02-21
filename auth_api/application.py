@@ -91,7 +91,7 @@ def create_app(
 	elif run_mode == "dev_email" : 
 		app.config.from_object('auth_api.config_prod.DevEmail')
 	
-	else : 
+	else : ### for instance "dev" or "default" or whatever not above ... mode will be considered as "dev" by the config.py file
 		app.config.from_object('auth_api.config.BaseConfig')
 
 	### append SALT and ANOJWT env vars to config 

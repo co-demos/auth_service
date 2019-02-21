@@ -8,8 +8,8 @@ from datetime import timedelta
 
 class BaseConfig(object):  
 
-	RUN_MODE			= "dev"
-	DEBUG					= True
+	RUN_MODE					= "dev"
+	DEBUG							= True
 	TEMPLATES_FOLDER 	= "/templates"
 	ROOT_FOLDER				= os.getcwd()
 	UPLOADS_FOLDER 		= ROOT_FOLDER+"/uploads"
@@ -25,7 +25,7 @@ class BaseConfig(object):
 	SWAGGER_UI_REQUEST_DURATION		= True
 
 	""" APP SECRET KEY """
-	SECRET_KEY						= "app_very_secret_key"
+	SECRET_KEY										= "app_very_secret_key"
 
 	""" SHARED JWT SECRET KEY : this key must be shared with openscraper and auth api """
 
