@@ -147,8 +147,9 @@ def create_app(
 				# mongo_corr_dicts   ### all cd are treated as ds_i
 			) 
 
-		# import token required
+		# import token required functions
 		from auth_api._auth import authorizations #, token_required
+		# from auth_api._auth.authorizations import * #, token_required
 
 		# import emailing functions
 		from auth_api._core.emailing import send_email, send_async_email 
