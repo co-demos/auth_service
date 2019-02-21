@@ -4,23 +4,20 @@
 -------
 ## PRESENTATION
 
-- a authentication microservice based on flask_restPlus
+#### An REST API for an authentication microservice 
+
 - this auth server was extracted / insulated / adapted from solidata_backend
 
-part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
+compatible with TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
 
-#### Building a public service for managing, consolidating, and sharing data 
 
 
 -------
 
 ## GOALS
 
-- allow you to consume data from your own csv/xls files or external APIs ;
-- consolidate your data : apply your own datamodel, simplify columns, apply metadatas, ... ; 
-- share the consolidated datas on API endpoints with the level of openness you decide (opendata, commons, collective, private) ;
-- manage all your data and your recipes by projects ;
-- be able to manage projects by teams and share data/recipes/datamodels...
+- a simple server to manage users and authorizations based on JWT exchanges between client and server
+- possibility to switch on/off some extra features as : RSA decryption/encryption, anonymous JWT 
 
 
 ------
