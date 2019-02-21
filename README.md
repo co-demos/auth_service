@@ -206,23 +206,25 @@ In practice :
 
 ## INSPIRATIONS / BENCHMARK
 
-- [Dataiku](https://www.dataiku.com/), [Parabola](https://parabola.io/), but they are proprietary solutions (and too complex for our pruposes)... Not to mention they are very expensive...
-- [Match ID](https://matchid-project.github.io/), but the backend doesn't resolve the "sharing" part with levels as ["opendata", "commons", "collective", "private"], and no BDD to back up recipes
+- not finding a simple enough open source solution resolving the following problem : having a third party service (on a distant server) able to serve reasonnably secure tokens and manage users, so to avoid to build/re-invent a custom authentication for login/register every time we work on an app... 
+- more, be able to share user/credentials between multiple services 
+- we looked at [Oauth2.0](https://oauth.net/2/) (but doesn't manage users per say), meteor-password (but dialog with websocket)...
 
 
 -------
 
 ## CREDITS 
 
-#### Solidata's team thanks :
+#### TokTok's team thanks :
 
 - the [SocialConnect](https://entrepreneur-interet-general.etalab.gouv.fr/defi/2017/09/26/socialconnect/) project, aka "Carrefour des Innovations Sociales"
 - the [EIG](https://entrepreneur-interet-general.etalab.gouv.fr/) program by [Etalab](https://www.etalab.gouv.fr/)
 - the [CGET](http://www.cget.gouv.fr/)
+- [Guillaume Lancrenon](https://github.com/guillim)
 
 #### Contacts - maintainance :
 
-- [Julien Paris](<mailto:julien.paris@cget.gouv.fr>), developer (aka [JPy](https://twitter.com/jparis_py) on Twitter)
+- [Julien Paris](<mailto:codemos.infos@gmail.com>), developer (aka [JPy](https://twitter.com/jparis_py) on Twitter)
 
 -------
 
