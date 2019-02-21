@@ -38,7 +38,7 @@ class BaseConfig(object):
 	# JWT_IDENTITY_CLAIM					= "_id"
 	### custom JWT expirations
 	JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES			= timedelta(minutes=15)  
-	JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES 	= timedelta(days=7)  
+	JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES = timedelta(days=7)  
 	JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES			= timedelta(days=1)  
 	# beware not putting anything in JWT_HEADER_TYPE like 'Bearer', 
 	# otherwise @jwt_required will look for an Authorization : Bearer <JWT> / 
@@ -58,19 +58,7 @@ class BaseConfig(object):
 	MONGO_DBNAME						= 'auth'
 	MONGO_URI								= 'mongodb://localhost:27017/auth'
 	# collections
-	# MONGO_COLL_TAGS							= "tags"
 	MONGO_COLL_USERS						= "users"
-	# MONGO_COLL_PROJECTS					= "projects"
-	# MONGO_COLL_DATAMODELS_TEMPLATES		= "datamodels_templates"
-	# MONGO_COLL_DATAMODELS_FIELDS			= "datamodels_fields"
-	# MONGO_COLL_CONNECTORS						= "connectors"
-	# MONGO_COLL_DATASETS_INPUTS			= "datasets_inputs"
-	# MONGO_COLL_DATASETS_RAWS				= "datasets_raws"
-	# MONGO_COLL_DATASETS_OUTPUTS			= "datasets_outputs"
-	# MONGO_COLL_DATASETS_OUTPUTS_DOC	= "datasets_outputs_docs"
-	# MONGO_COLL_RECIPES							= "recipes"
-	# MONGO_COLL_CORR_DICTS						= "corr_dicts"
-	# MONGO_COLL_LICENCES							= "licences"
 	MONGO_COLL_JWT_BLACKLIST				= "jwt_blacklist"
 
 	""" EMAILING """

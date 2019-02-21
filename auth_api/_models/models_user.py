@@ -10,6 +10,7 @@ log.debug("... loading models_users.py ...")
 
 
 from flask_restplus import fields
+from auth_api.api import app 
 
 ### import data serializers
 from auth_api._serializers.schema_logs import *  
@@ -30,6 +31,7 @@ class UserData :
 	"""
 
 	def __init__(self, ns_):
+  	
 		self.mod = ns_.model( "User_data", user_data )
 	
 	@property
@@ -111,7 +113,12 @@ class NewUser :
 	"""
 
 	def __init__(self, ns_):
-		self.mod = ns_.model( "User_register", user_register )
+  	
+		if app.config["SALT_MODE"] == "yes" : 
+			self.mod = ns_.model( "User_register", user_register )
+		else : 
+			self.mod = ns_.model( "User_register", user_register_nosalt )
+
 	
 	@property
 	def model(self): 
@@ -124,7 +131,12 @@ class LoginUser :
 	"""
 
 	def __init__(self, ns_):
-		self.mod = ns_.model( "User_login", user_login )
+
+		if app.config["SALT_MODE"] == "yes" : 
+			self.mod = ns_.model( "User_login", user_login )
+		else : 
+			self.mod = ns_.model( "User_login", user_login_nosalt )
+
 	
 	@property
 	def model(self): 

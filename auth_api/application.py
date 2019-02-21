@@ -69,7 +69,12 @@ log.debug("... mail : \n%s", pformat(mail.__dict__))
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 # application factory, see: http://flask.pocoo.org/docs/patterns/appfactories/
 
-def create_app( app_name='AUTH_API', run_mode="dev" ):  
+def create_app( 
+								app_name='AUTH_API', 
+								run_mode="dev", 
+								salt_mode="yes", 
+								anojwt_mode="yes"  
+							):  
 
 	log.debug ("... creating app ...")
 
@@ -85,6 +90,10 @@ def create_app( app_name='AUTH_API', run_mode="dev" ):
 		app.config.from_object('auth_api.config_prod.DevEmail')
 	else : 
 		app.config.from_object('auth_api.config.BaseConfig')
+
+	### add SALT and ANOJWT config 
+	app.config["SALT_MODE"] 	= salt_mode
+	app.config["ANOJWT_MODE"] = anojwt_mode
 
 	print()
 	log.debug("... app.config :\n %s", pformat(app.config))
@@ -160,29 +169,6 @@ def create_app( app_name='AUTH_API', run_mode="dev" ):
 		from auth_api.api.api_auth 	import blueprint as api_auth
 		app.register_blueprint( api_auth, url_prefix='/api/auth')
 
-		# from auth_api.api.api_projects 	import blueprint as api_proj
-		# app.register_blueprint( api_proj, url_prefix='/api/prj')
-
-		# from auth_api.api.api_dataset_inputs 	import blueprint as api_dsi
-		# app.register_blueprint( api_dsi, url_prefix='/api/dsi')
-
-		# from auth_api.api.api_datamodel_templates 	import blueprint as api_dmt
-		# app.register_blueprint( api_dmt, url_prefix='/api/dmt')
-
-		# from auth_api.api.api_datamodel_fields 	import blueprint as api_dmf
-		# app.register_blueprint( api_dmf, url_prefix='/api/dmf')
-
-		# from auth_api.api.api_tags 	import blueprint as api_tag
-		# app.register_blueprint( api_tag, url_prefix='/api/tag')
-
-		# from auth_api.api.api_recipes 	import blueprint as api_rec
-		# app.register_blueprint( api_rec, url_prefix='/api/rec')
-
-
-		### TO DO - write missing endpoints
-
-		# from auth_api.api.api_dataset_outputs 	import blueprint as api_dso
-		# app.register_blueprint( api_dso, url_prefix='/api/dso')
 
 
 

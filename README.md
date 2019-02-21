@@ -98,8 +98,8 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 - test the following urls 
 	
 	```
-	http://localhost:4000/api/auth/documentation
-	http://localhost:4000/api/usr/documentation
+	http://localhost:4100/api/auth/documentation
+	http://localhost:4100/api/usr/documentation
 	```
 
 - < if no longer needed deactivate your virtual environment >

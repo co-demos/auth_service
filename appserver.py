@@ -73,7 +73,7 @@ def app_runner(mode, host, port, salt, anojwt) :
 
 	from auth_api.application import create_app
 
-	app = create_app( app_name='AUTH_API', run_mode=mode )
+	app = create_app( app_name='AUTH_API', run_mode=mode, salt_mode=salt, anojwt_mode=anojwt )
 	
 	### apply / overwrites host configuration
 	if host == "None" : 

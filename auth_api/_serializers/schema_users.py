@@ -20,14 +20,14 @@ from .schema_logs import *
 ### basic informations about a user
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 name 				= fields.String(
-										description		= "name of the user",
+										description	= "name of the user",
 										attribute		= "name",
 										example			= "Elinor",
 										default			= 'Anonymous User',
 										required		= False,
 									)
 pseudo 				= fields.String(
-										description		= "pseudo of the user",
+										description	= "pseudo of the user",
 										attribute		= "pseudo",
 										example			= "Coco",
 										default			= 'Anonymous User',
@@ -40,20 +40,20 @@ surname 			= fields.String(
 										required 		= False,
 									)
 email 				= fields.String(
-										description 	= "email of the user",
+										description = "email of the user",
 										attribute		= "email",
 										example			= "elinor.ostrom@emailna.co", ### uses https://www.mohmal.com for temporary emails
 										required		= True,
 									)
 agreement			= fields.Boolean(
-										description		= "user has agreed to terms and conditions",
+										description	= "user has agreed to terms and conditions",
 										attribute		= "agreement",
 										example			= False,
 										required		= False,
 										default			= False,
 									)
 email_encrypt 		= fields.String(
-										description 	= "email of the user",
+										description = "email of the user",
 										attribute		= "email_encrypt",
 										example			= "elinor.ostrom@emailna.co", ### uses https://www.mohmal.com for temporary emails
 										required		= True,
@@ -210,10 +210,12 @@ user_pwd_encrypted = {
 }
 
 user_login = {
-	# "email" 			: email,
-	# "pwd"				: pwd,
-	"email_encrypt" 	: email_encrypt,
+	"email_encrypt" : email_encrypt,
 	"pwd_encrypt"		: pwd_encrypt,
+}
+user_login_nosalt = {
+	"email" 		: email,
+	"pwd"				: pwd,
 }
 
 user_basics = {
@@ -227,14 +229,20 @@ user_basics_light = {
 }
 
 user_register = {
-	"name" 				: name,
+	"name" 					: name,
 	"surname" 			: surname,
-	# "email" 			: email,
-	"email_encrypt" 	: email_encrypt,
-	# "pwd"				: pwd,
+	"email_encrypt" : email_encrypt,
 	"pwd_encrypt"		: pwd_encrypt,
-	"lang"				: language,
+	"lang"					: language,
 	"agreement"			: agreement,
+}
+user_register_nosalt = {
+	"name" 				: name,
+	"surname" 		: surname,
+	"email" 			: email,
+	"pwd"					: pwd,
+	"lang"				: language,
+	"agreement"		: agreement,
 }
 
 old_refresh_token = {
@@ -246,19 +254,19 @@ old_refresh_token = {
 ### FOR MODELS TO INSERT IN DB
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 user_auth_in = {
-	"pwd"					: pwd,
-	"conf_usr"				: confirmed_usr,
+	"pwd"						: pwd,
+	"conf_usr"			: confirmed_usr,
 	"role"					: role,
-	# "acc_tok"				: acc_tok,
-	"refr_tok"				: refr_tok,
-	"is_blacklisted"		: is_blacklisted,
+	# "acc_tok"			: acc_tok,
+	"refr_tok"			: refr_tok,
+	"is_blacklisted": is_blacklisted,
 }
 
 usr_profile_ = {
-	"lang"  				: language,
+	"lang"  					: language,
 	"agreement"				: agreement,
 	"usr_view"				: usr_view,
-	"usr_profiles"			: usr_profiles,
+	"usr_profiles"		: usr_profiles,
 }
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -267,12 +275,12 @@ usr_profile_ = {
 user_auth_out = {
 	# "pwd"					: pwd,
 	"role"					: role,
-	"conf_usr"				: confirmed_usr,
-	# "acc_tok"				: acc_tok,
+	"conf_usr"			: confirmed_usr,
+	# "acc_tok"			: acc_tok,
 }
 
 user_struct = {
 	"struct_name" 			: struct_name,
 	"struct_profile"		: struct_profile,
-	"struct_url"			: struct_url,
+	"struct_url"				: struct_url,
 }

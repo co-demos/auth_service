@@ -251,7 +251,7 @@ class NewRefreshToken(Resource) :
 		log.debug("decoded_token : \n %s", pformat(decoded_token))
 
 		### check jwt and user's identity from old refresh_token
-		jwt_type			= decoded_token["type"]
+		jwt_type				= decoded_token["type"]
 		jwt_identity 		= decoded_token["jti"]
 		log.debug('jwt_type : {} / jwt_identity : {}'.format(jwt_type, jwt_identity) )
 		user_identity 		= decoded_token["identity"]

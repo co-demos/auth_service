@@ -213,23 +213,41 @@ class Login(Resource):
 		claims 			= get_jwt_claims() 
 		log.debug("claims : \n %s", pformat(claims) )
 		
+
 		### retrieve infos from form
+		if app.config["SALT_MODE"] == "yes" : 
+			### DECYPHERING THE STRINGS FROM RSA JSENCRYPT IN FRONT !!!!!!
+			payload_email_encrypted   	= ns.payload["email_encrypt"]
+			log.debug("payload_email_encrypted : \n%s", payload_email_encrypted )
+			payload_email = email_decoded = RSAdecrypt(payload_email_encrypted)
+			log.debug("email_decoded    : %s", email_decoded )
+			### get hashed password from pwd_encrypt encoded with salt_key / public_key
+			payload_pwd_encrypted   	= ns.payload["pwd_encrypt"]
+			log.debug("payload_pwd_encrypted : \n%s", payload_pwd_encrypted )
+			payload_pwd = password_decoded = RSAdecrypt(payload_pwd_encrypted)
+			log.debug("password_decoded    : %s", password_decoded )
+		else : 
+			payload_email   = ns.payload["email"]
+			log.debug("payload_email : \n%s", payload_email )
+			payload_pwd   	= ns.payload["pwd"]
+			log.debug("payload_pwd : \n%s", payload_pwd )
+
+		### DECYPHERING THE STRING FROM RSA JSENCRYPT IN FRONT !!!!!!
 		# payload_email 				= ns.payload["email"]
 		# log.debug("payload_email  : %s", payload_email )
-		payload_email_encrypted   	= ns.payload["email_encrypt"]
-		log.debug("payload_email_encrypted : \n%s", payload_email_encrypted )
-		payload_email = email_decoded = RSAdecrypt(payload_email_encrypted)
-		log.debug("email_decoded    : %s", email_decoded )
+		# payload_email_encrypted   	= ns.payload["email_encrypt"]
+		# log.debug("payload_email_encrypted : \n%s", payload_email_encrypted )
+		# payload_email = email_decoded = RSAdecrypt(payload_email_encrypted)
+		# log.debug("email_decoded    : %s", email_decoded )
 
 		# payload_pwd   				= ns.payload["pwd"]
 		# log.debug("payload_pwd    : %s", payload_pwd )
 		
-		### DECYPHERING THE STRING FROM RSA JSENCRYPT IN FRONT !!!!!!
 		### get hashed password from pwd_encrypt encoded with salt_key / public_key
-		payload_pwd_encrypted   	= ns.payload["pwd_encrypt"]
-		log.debug("payload_pwd_encrypted : \n%s", payload_pwd_encrypted )
-		payload_pwd = password_decoded = RSAdecrypt(payload_pwd_encrypted)
-		log.debug("password_decoded    : %s", password_decoded )
+		# payload_pwd_encrypted   	= ns.payload["pwd_encrypt"]
+		# log.debug("payload_pwd_encrypted : \n%s", payload_pwd_encrypted )
+		# payload_pwd = password_decoded = RSAdecrypt(payload_pwd_encrypted)
+		# log.debug("password_decoded    : %s", password_decoded )
 
 		payload_renew_refr_token   	= ns.payload.get("renew_refresh_token", app.config["JWT_RENEW_REFRESH_TOKEN_AT_LOGIN"] )
 		log.debug("payload_renew_refr_token    : %s", payload_renew_refr_token )

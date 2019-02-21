@@ -121,7 +121,7 @@ class Usr_List(Resource):
 
 
 		### query db from generic function 		
-		query_args				= query_arguments.parse_args(request)
+		query_args			= query_arguments.parse_args(request)
 		page_args				= pagination_arguments.parse_args(request)
 		results, response_code	= Query_db_list (
 			ns, 
