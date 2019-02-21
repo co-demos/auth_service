@@ -6,7 +6,7 @@
 ---------
 
 <h2 align=center>
-	<img style="max-height:300px !important" src="./static/logo_auth_microservice.png">
+	<img src="./static/logo_auth_microservice_300px.png">
 </h2>
 
 -------
