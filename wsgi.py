@@ -10,11 +10,11 @@ from flask_socketio import SocketIO
 
 from auth_api.application import create_app
 
-app = create_app( app_name='SOLIDATA_API', run_mode="prod" )
+app = create_app( app_name='AUTH_API', run_mode="prod" )
 
 if __name__ == "main" :
   	
-	log.debug("\n--- STARTING SOLIDATA API (PROD) ---\n")
+	log.debug("\n--- STARTING AUTH API (PROD) ---\n")
 
 	### initiate socketio
 	socketio = SocketIO(app)

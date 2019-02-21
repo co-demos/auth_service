@@ -152,34 +152,26 @@ class User_infos :
 
 	def __init__(self, ns_) :
 		
-		model_type 					= "Usr"
+		model_type 							= "Usr"
 
 		### SELF MODULES
-		self._id 					= oid_field
-		self.basic_infos 			= create_model_basic_infos(	ns_,	model_name=model_type+"_infos", 	is_user_infos=True)
-		self.basic_infos_light		= create_model_basic_infos(	ns_,	model_name=model_type+"_infos", 	is_user_infos=True, is_user_light=True)
-		self.public_auth			= create_model_public_auth(	ns_,	model_name=model_type+"_public_auth")
-		self.specs					= create_model_specs(		ns_,	model_name=model_type+"_specs")
-		self.log					= create_model_log(			ns_,	model_name=model_type+"_log", 		include_counts=True, counts_name="login_count")
-		self.modif_log				= create_model_modif_log(	ns_,	model_name=model_type+"_modif_log")
+		self._id 								= oid_field
+		self.basic_infos 				= create_model_basic_infos(	ns_,	model_name=model_type+"_infos", 	is_user_infos=True)
+		self.basic_infos_light	= create_model_basic_infos(	ns_,	model_name=model_type+"_infos", 	is_user_infos=True, is_user_light=True)
+		self.public_auth				= create_model_public_auth(	ns_,	model_name=model_type+"_public_auth")
+		self.specs							= create_model_specs(				ns_,	model_name=model_type+"_specs")
+		self.log								= create_model_log(					ns_,	model_name=model_type+"_log", 		include_counts=True, counts_name="login_count")
+		self.modif_log					= create_model_modif_log(		ns_,	model_name=model_type+"_modif_log")
 		
-		self.datasets 				= create_model_datasets(	ns_, 	model_name=model_type+"_datasets", 	include_fav=True, 	schema_list=["prj","dmt", "dmf","dsi","rec","tag"])
-		self.datasets_light			= create_model_datasets(	ns_, 	model_name=model_type+"_datasets", 	include_fav=True, 	schema_list=["prj","dmt", "dmf","dsi","rec","tag"], is_light=True )
+		self.team 								= create_model_team( 			ns_,	model_name=model_type+"_team")
+		self.team_light 					= create_model_team(			ns_,	model_name=model_type+"_team", 		is_light=True)
 		
-		self.team 					= create_model_team( 		ns_,	model_name=model_type+"_team")
-		self.team_light 			= create_model_team(		ns_,	model_name=model_type+"_team", 		is_light=True)
-		
-		self.profile 				= create_model_profile( 	ns_,	model_name=model_type+"_profile")
+		self.profile 							= create_model_profile( 	ns_,	model_name=model_type+"_profile")
 		self.professional_infos 	= create_professional_infos(ns_, 	model_name=model_type+"_professionnal_infos")
 
-		self.auth_in				= create_model_auth(		ns_,	model_type+"_authorizations", 	schema=user_auth_in)
-		# self.auth_in				= fields.Nested(
-		# 			ns_.model(model_type+"_authorizations",  	user_auth_in  )
-		# 		)
-		self.auth_out				= create_model_auth(		ns_,	model_type+"_authorizations", 	schema=user_auth_out)
-		# self.auth_out				= fields.Nested(
-		# 			ns_.model(model_type+"_authorizations",  	user_auth_out  )
-		# 		)
+		self.auth_in							= create_model_auth(			ns_,	model_type+"_authorizations", 	schema=user_auth_in)
+		self.auth_out							= create_model_auth(			ns_,	model_type+"_authorizations", 	schema=user_auth_out)
+
 
 
 		self.model_id = {
@@ -196,13 +188,13 @@ class User_infos :
 		}
 		self.model_in = {
 			'modif_log'				: self.modif_log , 
-			"datasets"				: self.datasets ,
-			'profile' 				: self.profile,
+			# "datasets"				: self.datasets ,
+			'profile' 						: self.profile,
 			'professional_infos' 	: self.professional_infos,		
 		}
 		self.spec_auth_log = {
-			'public_auth' 			: self.public_auth,
-			'specs'					: self.specs , 
+			'public_auth' : self.public_auth,
+			'specs'				: self.specs , 
 			'log'					: self.log , 
 		}
 		self.model_min = { 
@@ -225,9 +217,7 @@ class User_infos :
 		self.model_team_light = {
 			'team'				: self.team_light,
 		}
-		self.model_datasets_light = {
-			'datasets'			: self.datasets_light,
-		}
+
 
 		### IN / complete data to enter in DB
 		self.mod_complete_in  	= ns_.model(model_type+"_in", 
@@ -262,7 +252,7 @@ class User_infos :
 			{ 
 				**self.model_min_light, 
 				**self.model_id, 
-				**self.model_datasets_light 
+				# **self.model_datasets_light 
 			}
 		)
 

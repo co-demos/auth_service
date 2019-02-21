@@ -7,6 +7,7 @@ import 	os
 from		copy import copy, deepcopy
 from  	datetime import datetime, timedelta
 import 	json
+
 from	bson import json_util
 from	bson.objectid import ObjectId
 from	bson.json_util import dumps
@@ -17,9 +18,9 @@ import 	pandas as pd
 import 	numpy as np
 import 	requests
 
-from 	flask 				import Blueprint, current_app as app, url_for, request, render_template
+from 	flask 						import Blueprint, current_app as app, url_for, request, render_template
 
-from 	werkzeug.security 	import 	generate_password_hash, check_password_hash
+from 	werkzeug.security import 	generate_password_hash, check_password_hash
 
 from 	flask_restplus 		import Api, Namespace, Resource, fields, marshal, reqparse
 
@@ -49,12 +50,12 @@ from base64 import b64decode, b64encode
 # cf : https://pythonhosted.org/pycrypto/Crypto.PublicKey.RSA._RSAobj-class.html#exportKey 
 # cf : https://www.pycryptodome.org/en/latest/src/examples.html 
 random_generator 	= Random.new().read
-key_pair 			= RSA.generate(1024, random_generator)
+key_pair 					= RSA.generate(1024, random_generator)
 
 private_key_str		= key_pair.exportKey().decode("utf-8")
 log.debug("private_key_str : \n %s", pformat(private_key_str))
 
-public_key 			= key_pair.publickey()
+public_key 				= key_pair.publickey()
 public_key_str		= public_key.exportKey().decode("utf-8")
 log.debug("public_key_str : \n %s", pformat(public_key_str))
 
@@ -85,7 +86,7 @@ plaintext = RSAdecrypt(ciphertext)
 log.info("/ / \ \ plaintext : \n%s", plaintext)
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-### DEBUGGING CONFIRMAITON EMAIL 
+### DEBUGGING CONFIRMATION EMAIL 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 # from auth_api._auth import generate_confirmation_token
 
@@ -102,17 +103,14 @@ from auth_api._core.cors 			import CORS, cross_origin
 
 from auth_api._auth.authorizations 	import authorizations as auth_check
 
-from auth_api._auth 				import ( 
+from auth_api._auth 					import ( 
 	admin_required, current_user_required, confirm_email_required, guest_required,
 	anonymous_required, renew_pwd_required, reset_pwd_required 
 	)
 
-from auth_api._parsers 	import * # pagination_arguments
-# from auth_api._parsers.parser_pagination 	import * # pagination_arguments
-# from auth_api._parsers.parser_queries 		import * # query_arguments
-# from auth_api._parsers.parser_files 		import * # files_arguments
+from auth_api._parsers 				import * # pagination_arguments
 
-from auth_api._choices 			import bad_passwords, authorized_filetypes, authorized_mimetype
+from auth_api._choices 				import bad_passwords, authorized_filetypes, authorized_mimetype
 
 from auth_api._core.utils 		import * # create_modif_log, secure_filename, allowed_file, return_payload
 # from auth_api._core.pandas_ops 	import * # create_modif_log, secure_filename, allowed_file

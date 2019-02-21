@@ -21,21 +21,8 @@ from auth_api.application import mongo
 
 ### declaring collections as app variables
 
-# mongo_tags 									= mongo.db[ app.config["MONGO_COLL_TAGS"] ]
-mongo_users 								= mongo.db[ app.config["MONGO_COLL_USERS"] ]
-# mongo_projects 							= mongo.db[ app.config["MONGO_COLL_PROJECTS"] ]
-# mongo_datamodels_templates 	= mongo.db[ app.config["MONGO_COLL_DATAMODELS_TEMPLATES"] ]
-# mongo_datamodels_fields 		= mongo.db[ app.config["MONGO_COLL_DATAMODELS_FIELDS"] ]
-# mongo_connectors	 				= mongo.db[ app.config["MONGO_COLL_CONNECTORS"] ]
-# mongo_datasets_inputs 			= mongo.db[ app.config["MONGO_COLL_DATASETS_INPUTS"] ]
-# mongo_datasets_raws 				= mongo.db[ app.config["MONGO_COLL_DATASETS_RAWS"] ]
-# mongo_recipes 							= mongo.db[ app.config["MONGO_COLL_RECIPES"] ]
-# mongo_corr_dicts 					= mongo.db[ app.config["MONGO_COLL_CORR_DICTS"] ]
-# mongo_datasets_outputs 			= mongo.db[ app.config["MONGO_COLL_DATASETS_OUTPUTS"] ]
-# mongo_datasets_outputs_doc 	= mongo.db[ app.config["MONGO_COLL_DATASETS_OUTPUTS_DOC"] ]
-
-# mongo_licences 							= mongo.db[ app.config["MONGO_COLL_LICENCES"] ]
-mongo_jwt_blacklist 				= mongo.db[ app.config["MONGO_COLL_JWT_BLACKLIST"] ]
+mongo_users 				= mongo.db[ app.config["MONGO_COLL_USERS"] ]
+mongo_jwt_blacklist = mongo.db[ app.config["MONGO_COLL_JWT_BLACKLIST"] ]
 
 
 log.debug(">>> _core.queries_db.__init__.py / INDEXING COLLECTIONS ... " )
@@ -43,17 +30,7 @@ log.debug(">>> _core.queries_db.__init__.py / INDEXING COLLECTIONS ... " )
 ### drop previous text indexes (only one text index per collection)
 main_text_fields_to_drop = '$**_text'
 try :
-	# mongo_tags.drop_index(main_text_fields_to_drop)
 	mongo_users.drop_index(main_text_fields_to_drop)
-	# mongo_projects.drop_index(main_text_fields_to_drop)
-	# mongo_datamodels_templates.drop_index(main_text_fields_to_drop)
-	# mongo_datamodels_fields.drop_index(main_text_fields_to_drop)
-	# mongo_datasets_inputs.drop_index(main_text_fields_to_drop)
-	# mongo_datasets_raws.drop_index(main_text_fields_to_drop)
-	# mongo_recipes.drop_index(main_text_fields_to_drop)
-	# mongo_datasets_outputs.drop_index(main_text_fields_to_drop)
-	# mongo_datasets_outputs_doc.drop_index(main_text_fields_to_drop)
-	# mongo_licences.drop_index(main_text_fields_to_drop)
 	mongo_jwt_blacklist.drop_index(main_text_fields_to_drop)
 except:
 	pass
@@ -78,57 +55,19 @@ main_text_fields_to_index = [
 	("data_raw.f_code"		,"text") ,
 ]
 
-# log.debug(">>> _core.queries_db.__init__.py / INDEXING COLLECTIONS : all fields... " )
-# mongo_datasets_inputs.create_index(				all_text_fields_to_index, name=all_text_fields_index_name) 	### index all fields
-# mongo_datasets_raws.create_index(					all_text_fields_to_index, name=all_text_fields_index_name)	### index all fields
-# mongo_datasets_outputs.create_index(			all_text_fields_to_index, name=all_text_fields_index_name) 	### index all fields
-# mongo_datasets_outputs_doc.create_index(	all_text_fields_to_index, name=all_text_fields_index_name) 	### index all fields
 
 log.debug(">>> _core.queries_db.__init__.py / INDEXING COLLECTIONS : main fields... " )
-mongo_users.create_index(									main_text_fields_to_index, name=main_text_fields_index_name)
-# mongo_tags.create_index(									main_text_fields_to_index, name=main_text_fields_index_name)
-# mongo_projects.create_index(							main_text_fields_to_index, name=main_text_fields_index_name)
-# mongo_datamodels_templates.create_index(	main_text_fields_to_index, name=main_text_fields_index_name)
-# mongo_datamodels_fields.create_index(			main_text_fields_to_index, name=main_text_fields_index_name)
-# mongo_recipes.create_index(								main_text_fields_to_index, name=main_text_fields_index_name)
-
-# mongo_licences.create_index(							main_text_fields_to_index, name=main_text_fields_index_name)
-mongo_jwt_blacklist.create_index(					main_text_fields_to_index, name=main_text_fields_index_name)
+mongo_users.create_index(					main_text_fields_to_index, name=main_text_fields_index_name)
+mongo_jwt_blacklist.create_index(	main_text_fields_to_index, name=main_text_fields_index_name)
 
 
 db_dict = {
-					# "mongo_tags"									: mongo_tags,
-					"mongo_users"									: mongo_users,
-					# "mongo_projects"							: mongo_projects,
-					# "mongo_datamodels_templates"	: mongo_datamodels_templates,
-					# "mongo_datamodels_fields"			: mongo_datamodels_fields,
-					# "mongo_connectors"					: mongo_connectors,
-					# "mongo_datasets_inputs"				: mongo_datasets_inputs,
-					# "mongo_datasets_raws"					: mongo_datasets_raws,
-					# "mongo_recipes"								: mongo_recipes,
-					# "mongo_corr_dicts"					: mongo_corr_dicts,
-
-					# "mongo_datasets_outputs"			: mongo_datasets_outputs,
-					# "mongo_datasets_outputs_doc"	: mongo_datasets_outputs_doc,
-
-					# "mongo_licences"							: mongo_licences,
-					"mongo_jwt_blacklist"					: mongo_jwt_blacklist,
+					"mongo_users"					: mongo_users,
+					"mongo_jwt_blacklist"	: mongo_jwt_blacklist,
 			}
 db_dict_by_type = {
-					# "tag"						: mongo_tags,
-					"usr"						: mongo_users,
-					# "prj"						: mongo_projects,
-					# "dmt"						: mongo_datamodels_templates,
-					# "dmf"						: mongo_datamodels_fields,
-					# "dsi"						: mongo_datasets_inputs,
-					# "dsr"						: mongo_datasets_raws,
-					# "rec"						: mongo_recipes,
-
-					# "dso"						: mongo_datasets_outputs,
-					# "dso_doc"				: mongo_datasets_outputs_doc,
-
-					# "lic"						: mongo_licences,
-					"jwt_blacklist"	: mongo_jwt_blacklist,
+					"usr"									: mongo_users,
+					"jwt_blacklist"				: mongo_jwt_blacklist,
 			}
 
 def select_collection(coll_name):
@@ -195,8 +134,8 @@ from .query_doc import *
 from .query_list import *
 from .query_delete import *
 from .query_update import *
-# from .query_solidify import *
 from .query_insert_doc import *
+# from .query_solidify import *
 # from .query_build_dso import *
 
 print()

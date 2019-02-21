@@ -33,19 +33,19 @@ def Query_db_delete (
 	# marshaller = Marshaller(ns, models)
 
 	### default values
-	db_collection				= db_dict_by_type[document_type]
-	document_type_full 	= doc_type_dict[document_type]
-	user_id = user_oid	= None
-	user_role						= "anonymous"
-	doc_oid							= ObjectId(doc_id)
-	document_out				= None
-	response_code				= 401
+	db_collection						= db_dict_by_type[document_type]
+	document_type_full 			= doc_type_dict[document_type]
+	user_id = user_oid			= None
+	user_role								= "anonymous"
+	doc_oid									= ObjectId(doc_id)
+	document_out						= None
+	response_code						= 401
 	user_allowed_to_delete 	= False
-	message 						= "dear user, you don't have the credentials to delete this {} with this oid : {}".format(document_type_full, doc_id) 
+	message 								= "dear user, you don't have the credentials to delete this {} with this oid : {}".format(document_type_full, doc_id) 
 
 	if claims or claims!={}  :
 		user_role 		= claims["auth"]["role"]
-		user_id	 		= claims["_id"] ### get the oid as str
+		user_id	 			= claims["_id"] ### get the oid as str
 		if user_role != "anonymous" : 
 			user_oid 		= ObjectId(user_id)
 			log.debug("user_oid : %s", user_oid )
@@ -56,14 +56,14 @@ def Query_db_delete (
 		# log.debug( "document : \n%s", pformat(document) )
 	else :
 		response_code	= 400
-		document		= None
+		document			= None
 
 	### sum up all query arguments
 	query_resume = {
-		"document_type"		: document_type,	
-		"doc_id" 			: doc_id,
-		"user_id" 			: user_id,
-		"user_role"			: user_role,
+		"document_type"			: document_type,	
+		"doc_id" 						: doc_id,
+		"user_id" 					: user_id,
+		"user_role"					: user_role,
 		"is_member_of_team" : False
 	}
 

@@ -55,11 +55,11 @@ class BaseConfig(object):
 	SERVER_NAME_TEST				= "True" 
 
 	""" MONGODB """
-	MONGO_DBNAME						= 'auth'
-	MONGO_URI								= 'mongodb://localhost:27017/auth'
+	MONGO_DBNAME							= 'auth'
+	MONGO_URI									= 'mongodb://localhost:27017/auth'
 	# collections
-	MONGO_COLL_USERS						= "users"
-	MONGO_COLL_JWT_BLACKLIST				= "jwt_blacklist"
+	MONGO_COLL_USERS					= "users"
+	MONGO_COLL_JWT_BLACKLIST	= "jwt_blacklist"
 
 	""" EMAILING """
 	# email server

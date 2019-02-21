@@ -41,10 +41,10 @@ def Query_db_insert (
 	log.debug("... _core.queries_db.query_insert_doc.py ... %s", document_type )
 	
 	### default values
-	db_collection		= db_dict_by_type[document_type]
+	db_collection				= db_dict_by_type[document_type]
 	document_type_full 	= doc_type_dict[document_type]
 
-	filter_doc = { field_to_check : value_to_check }
+	filter_doc 	= { field_to_check : value_to_check }
 	log.debug('filter_doc : %s', pformat(filter_doc) )  
 
 	### check if doc already exists 

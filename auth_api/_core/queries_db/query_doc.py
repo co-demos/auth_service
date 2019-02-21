@@ -8,7 +8,7 @@ import re
 import random
 
 import pandas as pd
-import 	numpy as np
+import numpy as np
 from pandas.io.json import json_normalize
 
 from log_config import log, pformat
@@ -93,11 +93,11 @@ def get_dso_docs(doc_oid, query_args) :
 
 	dso_doc_collection	= db_dict_by_type['dso_doc']
 
-	query = build_first_term_query(doc_oid, query_args)
+	query 	= build_first_term_query(doc_oid, query_args)
 	log.debug('query : \n%s', pformat(query) )  
 
 	# results = dso_doc_collection.find({'oid_dso' : doc_oid })
-	cursor = dso_doc_collection.find(query)
+	cursor 	= dso_doc_collection.find(query)
 
 	results = list(cursor)
 

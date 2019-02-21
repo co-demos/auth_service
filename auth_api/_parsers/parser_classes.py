@@ -26,9 +26,9 @@ class RequestParserBuilder :
 
 	def __init__(	self, 
 					add_pagination 	= False,
-					add_queries 	= False,
+					add_queries 		= False,
 					add_data_query 	= False,
-					add_files		= False,
+					add_files				= False,
 				) : 
 
 		self.baseParser = reqparse.RequestParser()
@@ -55,22 +55,6 @@ class RequestParserBuilder :
 
 		if add_queries : 
 
-			# self.baseParser.add_argument(
-			# 	'q_title', 
-			# 	# action='append', ### multiple values
-			# 	type=str, 
-			# 	required=False, 
-			# 	help='find documents matching this string in the title',
-			# 	# location = 'values'
-			# )
-			# self.baseParser.add_argument(
-			# 	'q_description', 
-			# 	# action='append', ### multiple values
-			# 	type=str, 
-			# 	required=False, 
-			# 	help='find documents matching this string in the description',
-			# 	# location = 'values'
-			# )
 			self.baseParser.add_argument(
 				'search_for', 
 				action='append',
@@ -261,41 +245,7 @@ class RequestParserBuilder :
 				help='Separator',
 				location = 'values'
 			)
-			# self.baseParser.add_argument(
-			# 	'form_file',  
-			# 	type=FileStorage, 
-			# 	location='form', 
-			# 	required=False, 
-			# 	help='any data file : tsv, csv, xml, xls, xlsx',
-			# )
-			# self.baseParser.add_argument(
-				# 'xls_file',  
-				# type=FileStorage, 
-				# location='files', 
-				# required=False, 
-				# help='XLS file',
-			# )
-			# self.baseParser.add_argument(
-				# 'xlsx_file',  
-				# type=FileStorage, 
-				# location='files', 
-				# required=False, 
-				# help='XLSX file',
-			# )
-			# self.baseParser.add_argument(
-				# 'csv_file',  
-				# type=FileStorage, 
-				# location='files', 
-				# required=False, 
-				# help='CSV file',
-			# )
-			# self.baseParser.add_argument(
-				# 'xml_file',  
-				# type=FileStorage, 
-				# location='files', 
-				# required=False, 
-				# help='XML file',
-			# )
+
 			for field in [ 
 					'title', 
 					'description', 
@@ -325,7 +275,6 @@ class RequestParserBuilder :
 					choices=doc_src_type_list,
 					default='csv'
 				)
-		
 
 	@property
 	def get_parser (self) : 
@@ -348,6 +297,5 @@ pagination_arguments	= q_pagination.get_parser
 q_pag_args 						= RequestParserBuilder(add_pagination=True, add_queries=True)
 query_pag_args				= q_pag_args.get_parser
 
-
-q_data_dso 								= RequestParserBuilder(add_pagination=True, add_data_query=True)
-query_data_dso_arguments	= q_data_dso.get_parser
+# q_data_dso 								= RequestParserBuilder(add_pagination=True, add_data_query=True)
+# query_data_dso_arguments	= q_data_dso.get_parser

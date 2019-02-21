@@ -5,8 +5,8 @@ _core/queries_db/query_list.py
 """
 
 import re
-import pandas as pd
-from pandas.io.json import json_normalize
+import 	pandas as pd
+from 		pandas.io.json import json_normalize
 
 from log_config import log, pformat
 log.debug("... _core.queries_db.query_list.py ..." )
@@ -33,29 +33,29 @@ def Query_db_list (
 		page_args,
 		query_args,
 		roles_for_complete 	= ["admin"],
-		check_teams			= True
+		check_teams					= True
 	):
 
 	### prepare marshaller 
 	marshaller = Marshaller(ns, models)
 
 	### default values
-	db_collection			= db_dict_by_type[document_type]
-	document_type_full 		= doc_type_dict[document_type]
-	user_id = user_oid		= None
-	user_role				= "anonymous"
-	documents_out_in_team	= None
+	db_collection						= db_dict_by_type[document_type]
+	document_type_full 			= doc_type_dict[document_type]
+	user_id = user_oid			= None
+	user_role								= "anonymous"
+	documents_out_in_team		= None
 	documents_out_not_team	= None
-	message 				= None
-	dft_open_level_show		= ["open_data"]
-	response_code			= 200
-	cursor_in_team_count	= 0
-	cursor_not_team_count	= 0
+	message 								= None
+	dft_open_level_show			= ["open_data"]
+	response_code						= 200
+	cursor_in_team_count		= 0
+	cursor_not_team_count		= 0
 
 	### get user's role and _id
 	# user_id 	= get_jwt_identity() ### get the oid as str
 	if claims or claims != {}  :
-		user_role 		= claims["auth"]["role"]
+		user_role 	= claims["auth"]["role"]
 		user_id	 		= claims["_id"] ### get the oid as str
 		if user_role != "anonymous" : 
 			user_oid 		= ObjectId(user_id)
@@ -87,20 +87,17 @@ def Query_db_list (
 
 	### get query arguments
 	log.debug('query_args : \n%s', pformat(query_args) )  
-	# q_title 		= query_args.get('q_title', 		None )
-	# q_description = query_args.get('q_description', 	None )
 	q_search_for 	= query_args.get('search_for', 		None )
 	q_oid_list		= query_args.get('oids',			None )
-	# q_oid_tags		= query_args.get('tags',			None )
 	q_only_stats	= query_args.get('only_stats',		False )
 	q_ignore_team	= query_args.get('ignore_teams',	False )
-	q_pivot			= query_args.get('pivot_results',	False )
+	q_pivot				= query_args.get('pivot_results',	False )
 	q_normalize		= query_args.get('normalize',	False )
 
 
 	### pipelines for basic query
 	pipeline_queries 	= {}
-	pipe_concat			= []
+	pipe_concat				= []
 	do_query_pipe 		= False
 
 
@@ -128,15 +125,6 @@ def Query_db_list (
 			pipe_concat.append(pipe_oids)
 			log.debug('pipe_concat + oid_list : %s', pipe_concat) 
 	
-	# if q_title != None : 
-	# 	do_query_pipe 		= True
-	# 	pipe_title 			= { "infos.title" : q_title }
-	# 	pipe_concat.append(pipe_title)
-	
-	# if q_description != None : 
-	# 	do_query_pipe 		= True
-	# 	pipe_description 	= { "infos.description" : q_description }
-	# 	pipe_concat.append(pipe_description)
 
 	### search by string in indexed fields 
 	if q_search_for != None : 

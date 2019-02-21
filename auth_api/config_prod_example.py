@@ -62,17 +62,6 @@ class BaseConfig(object):
 	# collections
 	MONGO_COLL_TAGS									= "tags"
 	MONGO_COLL_USERS								= "users"
-	# MONGO_COLL_PROJECTS							= "projects"
-	# MONGO_COLL_DATAMODELS_TEMPLATES	= "datamodels_templates"
-	# MONGO_COLL_DATAMODELS_FIELDS		= "datamodels_fields"
-	# MONGO_COLL_CONNECTORS						= "connectors"
-	# MONGO_COLL_DATASETS_INPUTS			= "datasets_inputs"
-	# MONGO_COLL_DATASETS_RAWS				= "datasets_raws"
-	# MONGO_COLL_DATASETS_OUTPUTS			= "datasets_outputs"
-	# MONGO_COLL_DATASETS_OUTPUTS_DOC	= "datasets_outputs_docs"
-	# MONGO_COLL_RECIPES							= "recipes"
-	# MONGO_COLL_CORR_DICTS					= "corr_dicts"
-	# MONGO_COLL_LICENCES							= "licences"
 	MONGO_COLL_JWT_BLACKLIST				= "jwt_blacklist"
 
 
@@ -147,17 +136,17 @@ class Prod(DevEmail) :
 	REDIRECTION_FRONT		= "http://www.my-auth-frontend.com" 
 
 	""" HOST - real prod IP and domain name"""
-	DOMAIN_ROOT			= "XXX.XX.XX.XXX" 
-	DOMAIN_PORT			= "4000"
-	SERVER_NAME			= "XXX.XX.XX.XXX:4100"  		### if True need to set SESSION_COOKIE_DOMAIN + cf : https://stackoverflow.com/questions/47666210/cookies-not-saved-in-the-browser 
-	DOMAIN_NAME			= "http://your-auth-instance.com"
+	DOMAIN_ROOT				= "XXX.XX.XX.XXX" 
+	DOMAIN_PORT				= "4000"
+	SERVER_NAME				= "XXX.XX.XX.XXX:4100"  		### if True need to set SESSION_COOKIE_DOMAIN + cf : https://stackoverflow.com/questions/47666210/cookies-not-saved-in-the-browser 
+	DOMAIN_NAME				= "http://your-auth-instance.com"
 	SERVER_NAME_TEST	= "True" 
 
 	""" MONGODB """
 	MONGO_DBNAME		= 'auth'
 	MONGO_USER 			= "mongo_admin_user"
 	MONGO_PASS 			= "mongo_admin_user_password"
-	MONGO_URI			= 'mongodb://mongo_admin_user_password:mongo_admin_user@127.0.0.1:27017/auth'
+	MONGO_URI				= 'mongodb://mongo_admin_user_password:mongo_admin_user@127.0.0.1:27017/auth'
 
 
 	""" EMAILING """
@@ -166,10 +155,10 @@ class Prod(DevEmail) :
 	MAIL_PORT 			= 465
 	MAIL_USE_TLS 		= False
 	MAIL_USE_SSL 		= True
-	MAIL_USERNAME 		= "your.auth-instance.email-contact@my_email.com" # os.environ.get('MAIL_USERNAME')
-	MAIL_PASSWORD 		= "email_password_here" 		# os.environ.get('MAIL_PASSWORD')
+	MAIL_USERNAME 	= "your.auth-instance.email-contact@my_email.com" # os.environ.get('MAIL_USERNAME')
+	MAIL_PASSWORD 	= "email_password_here" 		# os.environ.get('MAIL_PASSWORD')
 	# administrator list
-	ADMINS				= ['your.app.email@my_email.com']
+	ADMINS					= ['your.app.email@my_email.com']
 	MAIL_DEFAULT_SENDER = 'your.app.email@my_email.com'
 
 	""" ENCRYPTION FOR CONFIRMATION EMAIL """

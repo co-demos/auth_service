@@ -124,9 +124,9 @@ class Register(Resource):
 
 			### create user dict from form's data
 			new_user_infos 	= {
-				"infos" 	: ns.payload, 
+				"infos" 		: ns.payload, 
 				# "auth" 	: ns.payload 
-				"log"		: { "created_at" 	: datetime.utcnow() },
+				"log"				: { "created_at" 	: datetime.utcnow() },
 				"profile" 	: { "lang" 		: ns.payload["lang"]}
 			}
 			new_user 															= marshal( new_user_infos , model_user_complete_in )
@@ -166,9 +166,12 @@ class Register(Resource):
 			tokens = {
 					'access_token'		: access_token,
 					'refresh_token'		: refresh_token,
-					'salt_token' 			: public_key_str,
+					# 'salt_token' 			: public_key_str,
 					# 'access_token_confirm_email' 	: access_token_confirm_email
 			}
+			if app.config["SALT_MODE"]=="yes" : 
+				tokens["salt_token"] : public_key_str
+
 			log.info("tokens : \n %s", pformat(tokens))
 
 			### update new user in db		
@@ -307,8 +310,10 @@ class Confirm_email(Resource):
 				tokens = {
 							'access_token'	: access_token,
 							'refresh_token'	: refresh_token,
-							'salt_token' 		: public_key_str,
+							# 'salt_token' 		: public_key_str,
 						}
+				if app.config["SALT_MODE"]=="yes" : 
+					tokens["salt_token"] : public_key_str
 				log.info("tokens : \n%s", pformat(tokens))
 
 				return { 

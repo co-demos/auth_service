@@ -19,33 +19,33 @@ from .schema_logs import *
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### basic informations about a user
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-name 				= fields.String(
+name 						= fields.String(
 										description	= "name of the user",
 										attribute		= "name",
 										example			= "Elinor",
 										default			= 'Anonymous User',
 										required		= False,
 									)
-pseudo 				= fields.String(
+pseudo 					= fields.String(
 										description	= "pseudo of the user",
 										attribute		= "pseudo",
 										example			= "Coco",
 										default			= 'Anonymous User',
 										required		= False,
 									)
-surname 			= fields.String(
+surname 					= fields.String(
 										description 	= "surname of the user",
 										attribute		= "surname",
 										example			= "Ostrom",
 										required 		= False,
 									)
-email 				= fields.String(
+email 						= fields.String(
 										description = "email of the user",
 										attribute		= "email",
 										example			= "elinor.ostrom@emailna.co", ### uses https://www.mohmal.com for temporary emails
 										required		= True,
 									)
-agreement			= fields.Boolean(
+agreement					= fields.Boolean(
 										description	= "user has agreed to terms and conditions",
 										attribute		= "agreement",
 										example			= False,
@@ -61,19 +61,19 @@ email_encrypt 		= fields.String(
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### auth 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-pwd					= fields.String(
+pwd								= fields.String(
 										description 	= "password of the user",
 										attribute		= "pwd",
 										example			= "a-very-common-password",
 										required		= True,
 									)
-pwd_encrypt			= fields.String(
+pwd_encrypt				= fields.String(
 										description 	= "password of the user hashed from frontend with access_token",
 										attribute		= "pwd_encrypt",
 										example			= "hashed-common-password",
 										required		= False,
 									)
-confirmed_usr		= fields.Boolean(
+confirmed_usr			= fields.Boolean(
 										description		= "user has confirmed its account from his email",
 										attribute		= "conf_usr",
 										example			= False,
@@ -87,7 +87,7 @@ is_blacklisted		= fields.Boolean(
 										required		= False,
 										default			= False,
 									)
-role				= fields.String(
+role							= fields.String(
 										description 	= "role / authorization level of the user",
 										attribute		= "role",
 										example			= "guest",
@@ -95,13 +95,13 @@ role				= fields.String(
 										default			= "guest",
 										required		= True,
 									)
-acc_tok				= fields.String(
+acc_tok						= fields.String(
 										description 	= "access token of user",
 										attribute		= "acc_tok",
 										example			= "a-json-web-access-token",
 										default			= "no_access_token",
 									)
-refr_tok			= fields.String(
+refr_tok					= fields.String(
 										description		= "refresh token of user",
 										attribute		= "refr_tok",
 										example			= "a-json-web-refresh-token",
@@ -114,36 +114,19 @@ old_refr_tok		= fields.String(
 										default			= "no_old_refresh_token",
 										required		= False,
 									)
-# edit_auth			= fields.List(
-# 										fields.String(
-# 											description = "edit auth of an user",
-# 											enum		= user_actions_proj,
-# 										),
-# 										required		= False,
-# 										attribute		= "edit_auth", 
-# 										default			= [] 
-# 									)
-# edit_auth			= fields.String(
-# 										description 	= "edit auth of an user",
-# 										enum			= user_edit_auth,
-# 										example			= "can_only_view",
-# 										required		= False,
-# 										attribute		= "edit_auth", 
-# 										default			= [] 
-# 									)
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### profile
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 language			= fields.String(
-										description 	= "language preference", 
+										description = "language preference", 
 										example 		= "en",
 										attribute		= "lang",	
 										default			= "en",
-										required		= True,
+										required		= False,
 									)
 is_fav				= fields.Boolean(
-										description		= "is the document a favorite ?",
+										description	= "is the document a favorite ?",
 										attribute		= "is_fav",
 										example			= False,
 										required		= True,
@@ -154,19 +137,19 @@ is_fav				= fields.Boolean(
 ### professional infos
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 struct_name			= fields.String(
-										description		= "name of the user's structure",
+										description	= "name of the user's structure",
 										attribute		= "struct_name",
 										required		= True,
 									)
 struct_profile		= fields.String(
-										description		= "profile of the structure",
+										description	= "profile of the structure",
 										attribute		= "struct_profile",
 										example			= "public_state",
-										enum			= user_structure,
+										enum				= user_structure,
 										required		= False,
 									)
 struct_url 			= fields.String(
-										description		= "structure url link",
+										description	= "structure url link",
 										attribute		= "struct_url",
 										example			= "my-url-link",
 										default			= '',
@@ -174,8 +157,8 @@ struct_url 			= fields.String(
 									)
 
 usr_profile			= fields.String(
-										description		= "profiles of the user",
-										enum			= user_profiles,
+										description	= "profiles of the user",
+										enum				= user_profiles,
 									)
 usr_profiles		= fields.List(
 										usr_profile,
@@ -185,8 +168,8 @@ usr_profiles		= fields.List(
 									)
 
 usr_view			= fields.String(
-										description		= "view of the user : which collections are visible in front",
-										enum			= user_view,
+										description	= "view of the user : which collections are visible in front",
+										enum				= user_view,
 										attribute		= "usr_view",
 										default			= 'minimal',
 									)
@@ -199,11 +182,11 @@ user_data = {
 }
 
 user_identity = {
-	"email" 			: email,
+	"email" 				: email,
 }
 
 user_pwd = {
-	"pwd"		 		: pwd,
+	"pwd"		 				: pwd,
 }
 user_pwd_encrypted = {
 	"pwd_encrypt"		: pwd_encrypt,
@@ -220,7 +203,7 @@ user_login_nosalt = {
 
 user_basics = {
 	"name" 				: name,
-	"surname" 			: surname,
+	"surname" 		: surname,
 	"email" 			: email,
 	"pseudo"			: pseudo,
 }

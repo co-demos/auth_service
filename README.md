@@ -1,16 +1,25 @@
-<h1 align=center> AUTH SERVICE </h1>
+<div align=center> 
+	<h1>OPEN AUTH MICROSERVICE </h1>
+	<h3>aka "TOKTOK"</h3>
+</div>
 
 
 -------
 ## PRESENTATION
 
-#### An REST API for an authentication microservice 
+#### An REST API for an open source user manager and authentication microservice
 
 - this auth server was extracted / insulated / adapted from solidata_backend
+- compatible with TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
 
-compatible with TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
 
 
+--------
+
+## DEVELOPPERS
+
+- Please check out our **[guidelines](./GUIDELINES_DEV.md)** first
+- Check also the **[`prod_snippets`](./prod_snippets)** if you encounter problems while installing locally or setting your server : [install mongodb](./prod_snippets/prod_mongodb.md), [set up supervisor](./prod_snippets/prod_supervisor.md), [set up git](./prod_snippets/prod_git.md), [set up nginx](./prod_snippets/prod_nginx.md), [set up ubuntu](./prod_snippets/prod_ubuntu.md)...
 
 -------
 
@@ -25,11 +34,12 @@ compatible with TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-
 ## TECHNICAL POINTS
 
 #### Tech stack
-- _Language_  : **[Python 3.6](https://www.python.org/)**... yes ... I know ... Python again ... hmmm ... gnnn ... don't judge me ?!
+- _Language_  : **[Python 3.6](https://www.python.org/)**... praise be...
 - _Framework_ : **[Flask](http://flask.pocoo.org/)**... minimalistic Python framework
-- _API_       : **[Flask-RestPlus](http://flask-restplus.readthedocs.io/en/stable/)**... Swagger documentation integrated
+- _API_       : **[Flask-RestPlus](http://flask-restplus.readthedocs.io/en/stable/)**... Swagger documentation integrated, praise be noirbizarre...
 - _Security_  : **[Flask-JWT-extended](https://flask-jwt-extended.readthedocs.io/en/latest/)**... wrapper JWT for Flask
 - _Emailing_  : **[Flask-email](https://pythonhosted.org/Flask-Mail/)**... templating, sending, etc...
+- and more...
 
 #### Features :
 
@@ -84,7 +94,7 @@ compatible with TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-
 - run the app in `default` mode (without possibility to send email) : 
 
 	```bash
-	$ python appserver.py
+	python appserver.py
 	``` 
 
 - test the following urls 
@@ -114,24 +124,24 @@ In practice :
 - you can run the app in dev mode (with possibility to send email) : 
 
 	```bash
-	$ python appserver.py --mode=dev_email
+	python appserver.py --mode=dev_email
 	``` 
 
 - you can choose to deactivate the integrated RSA decryption in the `login` and `register` endpoints
 
 	```bash
-	$ python appserver.py --salt=no
+	python appserver.py --salt=no
 	``` 
 
 - you can choose to deactivate the check for a anonymous JWT in the `login` and `register` endpoints
 
 	```bash
-	$ python appserver.py --anojwt=no
+	python appserver.py --anojwt=no
 	``` 
 
 - you can add up those options in the command line
 	```bash
-	$ python appserver.py --anojwt=no --salt=yes --mode=dev_email
+	python appserver.py --anojwt=no --salt=yes --mode=dev_email
 	``` 
 
 ### _PRODUCTION_
@@ -179,8 +189,8 @@ In practice :
 
 - run the app in production mode (with possibility to send email) : 
 
-	```bash
-	$ python appserver.py --mode=production
+	```bash 
+	python appserver.py --mode=production
 	``` 
 
 ------

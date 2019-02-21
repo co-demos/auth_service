@@ -142,15 +142,17 @@ class NewAccessToken(Resource) :
 			log.debug("new_access_token : \n %s ", new_access_token)
 
 			### store tokens
-			token = {
+			tokens = {
 					'access_token'	: new_access_token,
-					'salt_token' 	: public_key_str,
+					# 'salt_token' 	: public_key_str,
 			}
+			if app.config["SALT_MODE"]=="yes" : 
+				tokens["salt_token"] : salt_token
 
 			return {	
 						"msg" 		: "new access token for user : {} ".format(user_identity) , 
 						"data"		: user_light,
-						"tokens"	: token
+						"tokens"	: tokens
 					}, 200 		### indicates to redirect to other URL
 	
 		else : 

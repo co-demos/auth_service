@@ -73,37 +73,8 @@ modified_val		= fields.String(
 										required		= False, 
 									)
 
-# used_by 			= fields.String(
-# 										description 	= "oid of a document",
-# 										attribute		= "used_by",
-# 										example			= "5b461ed90a82867e7b114f44",
-# 										required		= True,
-# 									)
-# modified_by 		= fields.String(
-# 										description 	= "oid of an user",
-# 										attribute		= "modified_by",
-# 										example			= "5b461ed90a82867e7b114f44",
-# 										required		= True,
-# 									)
-# added_by 			= fields.String(
-# 										description 	= "oid of an user",
-# 										attribute		= "added_by",
-# 										example			= "5b461ed90a82867e7b114f44",
-# 										required		= True,
-# 									)
-
 
 ### FOR GENERIC MODELS
-# modification 		= {
-# 	"modif_at" 		: modified_at,
-# 	"modif_for" 	: modified_for
-# }
-
-# modification_by 	= {
-# 	"modif_at" 		: modified_at,
-# 	"modif_for" 	: modified_for,
-# 	"modif_by" 		: oid_usr
-# }
 
 modification_full = {
 	"modif_at" 		: modified_at,
@@ -111,8 +82,3 @@ modification_full = {
 	"modif_by" 		: oid_usr,
 	"modif_val" 	: modified_val,
 }
-
-# doc_uses 		= {
-# 	"used_by" : used_by,
-# 	"used_at"	: used_at,
-# }
