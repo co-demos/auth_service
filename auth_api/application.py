@@ -132,15 +132,6 @@ def create_app(
 				Query_db_delete,
 
 				mongo_users,
-				# mongo_tags,
-				# mongo_projects,
-				# mongo_datamodels_templates, 
-				# mongo_datamodels_fields,
-				# mongo_datasets_inputs,
-				# mongo_datasets_raws,
-				# mongo_datasets_outputs, 
-				# mongo_recipes,
-				# mongo_connectors, ### all cd are treated as ds_i
 
 				mongo_jwt_blacklist,
 				# mongo_licences,

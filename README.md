@@ -4,7 +4,8 @@
 -------
 ## PRESENTATION
 
-auth server extracted / insulated from solidata_backend
+- a authentication microservice based on flask_restPlus
+- this auth server was extracted / insulated / adapted from solidata_backend
 
 part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
 
@@ -89,12 +90,6 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 	$ python appserver.py
 	``` 
 
-- run the app in dev mode (with possibility to send email) : 
-
-	```bash
-	$ python appserver.py --mode=dev_email
-	``` 
-
 - test the following urls 
 	
 	```
@@ -107,6 +102,40 @@ part 2a/3 of the TADATA! sofware suite ([ApiViz](https://github.com/entrepreneur
 	```bash
 	deactivate
 	```
+
+### _CLI OPTIONS_
+
+There are some options you can play with while running the service :
+- `--mode` : `default` (default), `dev_email`, `preprod`, `production`
+- `--host` : the IP of your server (default : `localhost`)
+- `--port` : the port you want to run the app on (default : `4100`)
+- `--salt` : if you receive the login|register forms encrypted (default : `yes`))
+- `--anojwt` : if you need to check the presence/validity of an "anonymous_jwt" in the request (default : `yes`) 
+
+In practice : 
+
+- you can run the app in dev mode (with possibility to send email) : 
+
+	```bash
+	$ python appserver.py --mode=dev_email
+	``` 
+
+- you can choose to deactivate the integrated RSA decryption in the `login` and `register` endpoints
+
+	```bash
+	$ python appserver.py --salt=no
+	``` 
+
+- you can choose to deactivate the check for a anonymous JWT in the `login` and `register` endpoints
+
+	```bash
+	$ python appserver.py --anojwt=no
+	``` 
+
+- you can add up those options in the command line
+	```bash
+	$ python appserver.py --anojwt=no --salt=yes --mode=dev_email
+	``` 
 
 ### _PRODUCTION_
 
