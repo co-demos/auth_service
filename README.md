@@ -1,8 +1,13 @@
 <div align=center> 
 	<h1>OPEN AUTH MICROSERVICE </h1>
-	<h3>aka "TOKTOK"</h3>
+	<h4>aka TokTok</h4>
 </div>
 
+---------
+
+<h2 align=center>
+	<img style="max-height:300px" src="./static/logo_auth_microservice.png">
+</h2>
 
 -------
 ## PRESENTATION
