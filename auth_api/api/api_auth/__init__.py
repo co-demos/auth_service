@@ -18,15 +18,12 @@ log.debug("\n>>> api_auth ... creating api blueprint for AUTH")
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 blueprint = Blueprint( 'api_auth', __name__, template_folder=app.config["TEMPLATES_FOLDER"] )
-# blueprint = Blueprint( 'api_auth', __name__, template_folder='templates' )
 
-### enable CORS on blueprint
-# CORS(blueprint)
 
 ### create API
 api = Api( 	blueprint,
 						title						= "Auth API : AUTH SERVER",
-						version					= "0.1",
+						version					= "0.3",
 						description			= "auth server / manages tokens",
 						doc							= '/documentation',
 						default					= 'login',

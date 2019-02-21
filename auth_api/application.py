@@ -84,14 +84,17 @@ def create_app(
 	### load config 
 	if run_mode == "prod" : 	
 		app.config.from_object('auth_api.config_prod.Prod')
+	
 	elif run_mode == "preprod" : 
 		app.config.from_object('auth_api.config_prod.Preprod')
+	
 	elif run_mode == "dev_email" : 
 		app.config.from_object('auth_api.config_prod.DevEmail')
+	
 	else : 
 		app.config.from_object('auth_api.config.BaseConfig')
 
-	### add SALT and ANOJWT config 
+	### append SALT and ANOJWT env vars to config 
 	app.config["SALT_MODE"] 	= salt_mode
 	app.config["ANOJWT_MODE"] = anojwt_mode
 
@@ -145,10 +148,9 @@ def create_app(
 		# import emailing functions
 		from auth_api._core.emailing import send_email, send_async_email 
 
-		## DEBUGGING
+		## DEBUGGING / test
 		print()
-		find_one_user = mongo_users.find({'infos.name': "Julien"})
-		# find_one_user = db["mongo_users"].find({'infos.name': "Julien"})
+		find_one_user = mongo_users.find({'infos.name': "auth"})
 		log.debug("DEBUG : find_one_user : \n%s", pformat(list(find_one_user)))
 
 

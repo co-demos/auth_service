@@ -44,7 +44,7 @@ for dft_usr in default_system_user_list :
 		value_to_check 	= dft_usr["auth"]["role"],
 		field_to_check	= "auth.role",
 
-		user_role   	= "system"
+		user_role   		= "system"
 	)
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -95,22 +95,6 @@ class Register(Resource):
 
 			payload_pwd = ns.payload["pwd"]
 			log.debug("payload_pwd : \n%s", payload_pwd )
-
-
-		# payload_email 			= ns.payload["email"]
-		# payload_pwd 			= ns.payload["pwd"]
-		# log.debug("email : %s", payload_email )
-		# log.debug("password : %s", payload_pwd )
-		
-		# payload_email_encrypted = ns.payload["email_encrypt"]
-		# log.debug("payload_email_encrypted : \n%s", payload_email_encrypted )
-		# payload_email = email_decoded = RSAdecrypt(payload_email_encrypted)
-		# log.debug("email_decoded    : %s", email_decoded )
-
-		# payload_pwd_encrypted = ns.payload["pwd_encrypt"]
-		# log.debug("payload_pwd_encrypted : \n%s", payload_pwd_encrypted )
-		# payload_pwd = password_decoded = RSAdecrypt(payload_pwd_encrypted)
-		# log.debug("password_decoded    : %s", password_decoded )
 
 		### chek if user already exists in db
 		existing_user = mongo_users.find_one({"infos.email" : payload_email})
@@ -187,7 +171,7 @@ class Register(Resource):
 
 			message = "new user has been created but no confirmation link has been sent"
 
-			### send a confirmation email if not RUN_MODE not 'dev'
+			### send a confirmation email if not RUN_MODE not 'default'
 			if app.config["RUN_MODE"] in ["prod", "dev_email", "preprod"] : 
 				
 				try : 
@@ -332,9 +316,12 @@ class Confirm_email(Resource):
 				tokens = {
 							'access_token'	: access_token,
 							'refresh_token'	: refresh_token,
-							'salt_token' 		: public_key_str,
+							# 'salt_token' 		: public_key_str,
 						}
+				if app.config["SALT_MODE"]=="yes" : 
+					tokens["salt_token"] : public_key_str
 				log.info("tokens : \n%s", pformat(tokens))
+					
 				return { 
 							"msg" 							: "identity '{}' is already confirmed OR user is blacklisted, existing refresh token is returned...".format(user_identity),
 							"tokens"						: tokens,

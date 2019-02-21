@@ -14,9 +14,9 @@ ns = Namespace('tokens', description='User : tokens freshening related endpoints
 
 ### import models 
 from auth_api._models.models_user import * #User_infos, AnonymousUser
-model_user				= User_infos(ns)
-model_user_access		= model_user.model_access
-model_user_login_out	= model_user.model_login_out
+model_user							= User_infos(ns)
+model_user_access				= model_user.model_access
+model_user_login_out		= model_user.model_login_out
 model_old_refresh_token = ExpiredRefreshToken(ns).model
 
 
@@ -193,7 +193,7 @@ class FreshAccessToken(Resource):
 		if user :
 
 			### marshal user's info 
-			user_light 			= marshal( user , model_user_access)
+			user_light 					= marshal( user , model_user_access)
 			user_light["_id"] 	= str(user["_id"])
 
 			# Use create_access_token() to create user's fresh access token 
@@ -244,7 +244,7 @@ class NewRefreshToken(Resource) :
 
 		### retrieve jwt
 		# raw_jwt 				= ns.payload["old_refresh_token"]
-		raw_jwt 				= old_refresh_token
+		raw_jwt 					= old_refresh_token
 		log.debug("raw_jwt : \n %s", pformat(raw_jwt))
 
 		### decode jwt

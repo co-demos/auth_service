@@ -187,30 +187,6 @@ def anonymous_required(func):
 	return wrapper
 
 
-# def anonymous_or_guest_required(func):
-# 	"""
-# 	Check if user is not logged yet in access_token 
-# 	and has a 'guest' or 'anonymous' role
-# 	"""
-# 	@wraps(func)
-# 	def wrapper(*args, **kwargs):
-		
-# 		log.debug("-@- anonymous checker")
-
-# 		verify_jwt_in_request()
-# 		claims = get_jwt_claims()
-# 		log.debug("claims : \n %s", pformat(claims) )
-		
-# 		log.debug("kwargs : \n %s", pformat(kwargs) )
-
-# 		if claims["auth"]["role"] not in  ['guest', 'anonymous'] :
-# 			return { "msg" : "Anonymous users or guests only !!! " }, 403
-# 		else:
-# 			return func(*args, **kwargs)
-	
-# 	return wrapper
-
-
 def guest_required(func):
 	"""
 	Check if user is not logged yet in access_token 

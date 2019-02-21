@@ -18,8 +18,8 @@ ns = Namespace('password', description='User : password related endpoints')
 ### import models 
 from auth_api._models.models_user import EmailUser, PasswordUser, User_infos
 model_email_user  	= EmailUser(ns).model
-model_pwd_user		= PasswordUser(ns).model
-model_access_user	= User_infos(ns).model_access
+model_pwd_user			= PasswordUser(ns).model
+model_access_user		= User_infos(ns).model_access
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -69,13 +69,13 @@ class PasswordForgotten(Resource):
 		if user :  
 			
 			### marshal user's info 
-			user_light				= marshal( user , model_access_user)
-			user_light["_id"]		= str(user["_id"])
+			user_light							= marshal( user , model_access_user)
+			user_light["_id"]				= str(user["_id"])
 			user_light["renew_pwd"] = True
 			log.debug("user_light : \n %s", pformat(user_light)) 
 
 			# Use create_refresh_token() to create user's new access token for n days
-			expires 				= app.config["JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES"]
+			expires 								= app.config["JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES"]
 			renew_pwd_access_token 	= create_access_token(identity=user_light, expires_delta=expires, fresh=True)
 			# new_refresh_token = create_refresh_token(identity=user_light, expires_delta=expires)
 			log.debug("renew_pwd_access_token : \n %s", renew_pwd_access_token)
@@ -143,12 +143,12 @@ class ResetPassword(Resource):
 		user = mongo_users.find_one({"infos.email" : user_email })
 		
 		### marshall infos
-		user_light				= marshal( user , model_access_user)
-		user_light["_id"] 		= str(user["_id"])
+		user_light							= marshal( user , model_access_user)
+		user_light["_id"] 			= str(user["_id"])
 		user_light["reset_pwd"] = True
 
 		### create a new and temporary refresh_token 
-		expires 				= app.config["JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES"]
+		expires 								= app.config["JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES"]
 		reset_pwd_access_token 	= create_access_token(identity=user_light, expires_delta=expires, fresh=True)
 		# refresh_token	= user["auth"]["refr_tok"]
 		# refresh_token = create_refresh_token(identity=user_light, expires_delta=expires) # sent_token

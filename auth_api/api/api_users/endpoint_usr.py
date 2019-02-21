@@ -18,18 +18,18 @@ ns = Namespace('infos', description='Users : users lists related endpoints ')
 ### import models 
 from auth_api._models.models_user import *  
 model_new_user  = NewUser(ns).model
-model_user 		= User_infos(ns)
-model_user_in	= model_user.model_complete_in
+model_user 			= User_infos(ns)
+model_user_in		= model_user.model_complete_in
 model_user_out	= model_user.model_complete_out
 
-mod_doc				= User_infos(ns)
-model_doc_out		= mod_doc.mod_complete_out
+mod_doc							= User_infos(ns)
+model_doc_out				= mod_doc.mod_complete_out
 model_doc_guest_out	= mod_doc.model_guest_out
-model_doc_min		= mod_doc.model_minimum
-models 				= {
-	"model_doc_out" 		: model_doc_out ,
-	"model_doc_guest_out" 	: model_doc_guest_out ,
-	"model_doc_min" 		: model_doc_min ,
+model_doc_min				= mod_doc.model_minimum
+models 							= {
+	"model_doc_out" 			: model_doc_out ,
+	"model_doc_guest_out" : model_doc_guest_out ,
+	"model_doc_min" 			: model_doc_min ,
 } 
 
 
@@ -69,7 +69,7 @@ class Usr_infos_(Resource):
 
 
 		### query db from generic function 		
-		query_args				= query_data_arguments.parse_args(request)
+		query_args			= query_data_arguments.parse_args(request)
 		page_args				= pagination_arguments.parse_args(request)
 		results, response_code	= Query_db_doc (
 			ns, 

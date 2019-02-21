@@ -16,15 +16,11 @@ document_type		= "usr"
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 blueprint = Blueprint( 'api_users', __name__, template_folder=app.config["TEMPLATES_FOLDER"] )
-# blueprint = Blueprint( 'api_users', __name__, template_folder='templates' )
-
-### enable CORS on blueprint
-# CORS(blueprint)
 
 ### create API
 api = Api( 	blueprint,
 						title						= "Auth API : USERS",
-						version					= "0.2",
+						version					= "0.3",
 						description			= "create, list, delete, edit... users",
 						doc							= '/documentation',
 						default					= 'register',
@@ -55,7 +51,7 @@ def default_error_handler(e):
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 
-from .endpoint_usr import 			ns as ns_usr_list
+from .endpoint_usr import 					ns as ns_usr_list
 api.add_namespace(ns_usr_list)
 
 # from .endpoint_user_login import ns as ns_user_login
@@ -64,5 +60,5 @@ api.add_namespace(ns_usr_list)
 from .endpoint_usr_register import 	ns as ns_usr_register
 api.add_namespace(ns_usr_register)
 
-from .endpoint_usr_edit import		ns as ns_usr_edit
+from .endpoint_usr_edit import			ns as ns_usr_edit
 api.add_namespace(ns_usr_edit)

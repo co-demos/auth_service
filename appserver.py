@@ -61,10 +61,10 @@ def app_runner(mode, host, port, salt, anojwt) :
 
 	### WARNING : CLIck will treat every input as string as defaults values are string too
 	log.debug("\n=== CUSTOM CONFIG FROM CLI ===\n")
-	log.debug("=== mode : %s", mode)
-	log.debug("=== host : %s", host)
-	log.debug("=== port : %s", port)
-	log.debug("=== salt : %s", salt)
+	log.debug("=== mode		: %s", mode)
+	log.debug("=== host 	: %s", host)
+	log.debug("=== port 	: %s", port)
+	log.debug("=== salt 	: %s", salt)
 	log.debug("=== anojwt : %s", anojwt)
 	print()
 
