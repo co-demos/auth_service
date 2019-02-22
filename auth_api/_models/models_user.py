@@ -232,7 +232,8 @@ class User_infos :
 		self.mod_complete_out	= ns_.model(model_type+"_out", 
 			{ 
 				**self.model_min, 
-				**self.model_in, 
+				**self.model_in,
+				**self.model_auth_out, 
 				**self.model_id 
 			} 
 		)

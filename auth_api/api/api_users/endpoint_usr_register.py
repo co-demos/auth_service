@@ -162,7 +162,7 @@ class Register(Resource):
 			# user_created = mongo_users.find_one({"infos.email" : payload_email})
 			user_created = mongo_users.find_one({"_id" : _id})
 			user_created["log"]["created_by"] 	= _id
-			user_created["auth"]["refr_tok"] 	= refresh_token
+			user_created["auth"]["refr_tok"] 		= refresh_token
 			mongo_users.save(user_created)
 			log.info("new user is updated with its tokens : \n%s", pformat(new_user))
 

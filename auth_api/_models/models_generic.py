@@ -175,8 +175,8 @@ def create_model_profile(	ns_,
 
 
 def create_model_auth(	ns_, 
-						model_name = "User_authorizations",
-						schema		= user_auth_in
+						model_name 	= "User_authorizations",
+						schema			= user_auth_in
 					):
 	
 	"""
