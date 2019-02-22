@@ -196,13 +196,13 @@ In practice :
 
 - same steps than for local installation (virtual env, install dependencies, config_prod.py file, ) ... 
 
-- run the app in production mode (with possibility to send email) : 
+- test to run the app in production mode (with possibility to send email) : 
 
 	```bash 
 	python appserver.py --mode=production
 	``` 
 
-- it is advised to set up some service on the server to run the app as daemon. You could use supervisor for instance (check our [snippets and walkthrough here](./prod_snippets/prod_supervisor.md))
+- it is then necessary to set up some service on the server to run the app as daemon. You could use `supervisor` for instance (check our [snippets and walkthrough here](./prod_snippets/prod_supervisor.md))
 
 ------
 
