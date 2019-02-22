@@ -4,6 +4,7 @@ This project is prone to be developped by several developpers, so we agreed on s
 
 ## GENERAL 
 
+- we try to comment and document in english
 - check out our ["project" boards](https://github.com/co-demos/toktok/projects) to have an idea about the priorities we collectively decided to work on.
 - "see something, say something" : open new issues when you see problems needing to be solved. Add tags and referees if possible
 - document your own issues with everything you have : images, references, snippets, etc... 
