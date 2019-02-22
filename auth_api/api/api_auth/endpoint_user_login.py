@@ -28,61 +28,63 @@ model_user_login_out	= model_user.model_login_out
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### cf : response codes : https://restfulapi.net/http-status-codes/ 
 
-# @cross_origin()
-@ns.route('/anonymous/')
-class AnonymousLogin(Resource):
+if app.config["ANOJWT_MODE"] == "yes" : 
+	
+	# @cross_origin()
+	@ns.route('/anonymous/')
+	class AnonymousLogin(Resource):
 
-	@ns.doc('user_anonymous')
-	@ns.doc(responses={200: 'success : anonymous user created with its access and refresh tokens'})
-	def get(self):
-		"""
-		Login as anonymous user
+		@ns.doc('user_anonymous')
+		@ns.doc(responses={200: 'success : anonymous user created with its access and refresh tokens'})
+		def get(self):
+			"""
+			Login as anonymous user
 
-		>
-			--- needs   : nothing in particular
-			>>> returns : msg, anonymous access_token + anonymous refresh_token with a short expiration date
-		"""
+			>
+				--- needs   : nothing in particular
+				>>> returns : msg, anonymous access_token + anonymous refresh_token with a short expiration date
+			"""
 
-		### DEBUGGING
-		print()
-		print("-+- "*40)
-		log.debug( "ROUTE class : %s", self.__class__.__name__ )
+			### DEBUGGING
+			print()
+			print("-+- "*40)
+			log.debug( "ROUTE class : %s", self.__class__.__name__ )
 
-		### create a fake user 
-		anon_user_class = AnonymousUser()
-		anonymous_user 	= anon_user_class.__dict__
+			### create a fake user 
+			anon_user_class = AnonymousUser()
+			anonymous_user 	= anon_user_class.__dict__
 
-		### create corresponding access token
-		anonymous_access_token		= create_access_token(identity=anonymous_user) #, expires_delta=expires)
+			### create corresponding access token
+			anonymous_access_token		= create_access_token(identity=anonymous_user) #, expires_delta=expires)
 
-		### create a random string for later login / register encryption in frontend
-		anonymous_access_token_decoded	= decode_token(anonymous_access_token)
-		log.debug("anonymous_access_token_decoded : \n %s", pformat(anonymous_access_token_decoded) )
-		# salt_token	= anonymous_access_token_decoded['jti']
-		# salt_token	= salt_token.replace("-", "")
+			### create a random string for later login / register encryption in frontend
+			anonymous_access_token_decoded	= decode_token(anonymous_access_token)
+			log.debug("anonymous_access_token_decoded : \n %s", pformat(anonymous_access_token_decoded) )
+			# salt_token	= anonymous_access_token_decoded['jti']
+			# salt_token	= salt_token.replace("-", "")
 
-		### create corresponding refresh token
-		expires 									= app.config["JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES"]
-		anonymous_refresh_token		= create_refresh_token(identity=anonymous_user, expires_delta=expires)
+			### create corresponding refresh token
+			expires 									= app.config["JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES"]
+			anonymous_refresh_token		= create_refresh_token(identity=anonymous_user, expires_delta=expires)
 
-		log.debug("anonymous_access_token 	: \n %s", anonymous_access_token )
-		log.debug("anonymous_refresh_token 	: \n %s", anonymous_refresh_token )
+			log.debug("anonymous_access_token 	: \n %s", anonymous_access_token )
+			log.debug("anonymous_refresh_token 	: \n %s", anonymous_refresh_token )
 
-		### store tokens in dict
-		tokens = {
-					'access_token' 	: anonymous_access_token,
-					'refresh_token' : anonymous_refresh_token,
-					# 'salt_token' 		: salt_token,
-				}
-		if app.config["SALT_MODE"]=="yes" : 
-			salt_token 		= public_key_str #.decode("utf-8")
-			log.debug("salt_token 					: \n %s", salt_token )
-			tokens["salt_token"] : salt_token
+			### store tokens in dict
+			tokens = {
+						'access_token' 	: anonymous_access_token,
+						'refresh_token' : anonymous_refresh_token,
+						# 'salt_token' 		: salt_token,
+					}
+			if app.config["SALT_MODE"]=="yes" : 
+				salt_token 		= public_key_str #.decode("utf-8")
+				log.debug("salt_token 					: \n %s", salt_token )
+				tokens["salt_token"] : salt_token
 
-		return {	
-					"msg" 		: "anonymous user - an anonymous access_token has been created + a valid refresh_token for {} hours".format(expires) , 
-					"tokens"	:  tokens
-				}, 200
+			return {	
+						"msg" 		: "anonymous user - an anonymous access_token has been created + a valid refresh_token for {} hours".format(expires) , 
+						"tokens"	:  tokens
+					}, 200
 
 
 

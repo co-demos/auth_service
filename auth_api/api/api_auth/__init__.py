@@ -22,7 +22,7 @@ blueprint = Blueprint( 'api_auth', __name__, template_folder=app.config["TEMPLAT
 
 ### create API
 api = Api( 	blueprint,
-						title						= "Auth API : AUTH SERVER",
+						title						= "TokTok / Auth API : AUTH SERVER",
 						version					= "0.3",
 						description			= "auth server / manages tokens",
 						doc							= '/documentation',
