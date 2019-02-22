@@ -32,7 +32,7 @@ We are following this git principles : [link to blog](https://guillim.github.io/
 Please follow those rules when developping new features : 
 - locally : create a new branch (f.i. `mypseudo_mynewfeature`) to work on your own feature(s)
 - before pushing your changes pull the remote `develop` branch to be merged with your changes in `mypseudo_mynewfeature` branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop` branch):
->
+  >
   ```bash
   git pull origin develop
   ```
