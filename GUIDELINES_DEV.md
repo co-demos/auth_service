@@ -30,13 +30,18 @@ We are following this git principles : [link to blog](https://guillim.github.io/
 - once every new feature is accepted and merged into `develop`, `develop` must be merged into `master` to constitute a new release
 
 Please follow those rules when developping new features : 
-- locally : create a new branch (f.i. `my_new_feature`) to work on your own feature(s)
+- locally : create a new branch (f.i. `mypseudo_mynewfeature`) to work on your own feature(s)
+- before pushing your changes pull the remote `develop` branch to be merged with your changes in `mypseudo_mynewfeature` branch (so to be sure the features you just developped are compatible with the checked/reviewed `develop` branch):
+  >
+  ```bash
+  git pull origin develop
+  ```
 - push your branch to the remote repo (github repo) : 
   > 
     ```bash
-    git push origin <my_new_feature>
+    git push origin <mypseudo_mynewfeature>
     ```
-- ask for a pull request on Github from `my_new_feature` branch to `develop` branch
+- ask for a pull request on Github from `mypseudo_mynewfeature` branch to `develop` branch
 - someone else must be assigned as a code reviewer, whose in charge to accept your code changes and merge
-- once accepted / reviewed delete `my_new_feature` from repo to keep the branches clean
+- once accepted / reviewed delete `mypseudo_mynewfeature` from repo to keep the branches clean
 - once everything is clean maintainers will pull the updated `develop` branch to `master`
