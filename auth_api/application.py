@@ -95,7 +95,7 @@ def create_app(
 		app.config.from_object('auth_api.config.BaseConfig')
 
 	### append SALT and ANOJWT env vars to config 
-	app.config["RSA_MODE"] 	= RSA_mode
+	app.config["RSA_MODE"] 		= RSA_mode
 	app.config["ANOJWT_MODE"] = anojwt_mode
 
 	print()

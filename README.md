@@ -15,7 +15,7 @@
 #### _TokTok_ is a microservice (a REST API) for users management and authentication based on access and refresh JSON Web Tokens (JWT)
 
 - this auth server was extracted / insulated / forked / adapted from **[solidata_backend](https://github.com/entrepreneur-interet-general/solidata_backend)** project.
-- compatible with the **TADATA!** sofware suite ( [ApiViz](https://github.com/entrepreneur-interet-general/CIS-front) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
+- compatible with the **TADATA!** sofware suite ( [ApiViz](https://github.com/co-demos/apiviz) / [Solidata_frontend](https://github.com/entrepreneur-interet-general/solidata_frontend) / [OpenScraper](https://github.com/entrepreneur-interet-general/OpenScraper) )
 
 
 
