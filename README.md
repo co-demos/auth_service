@@ -24,14 +24,14 @@
 ## GOALS
 
 - a simple server to manage users and authorizations based on JWT exchanges between client and server
-- possibility to switch on/off some extra features as : RSA decryption/encryption, anonymous JWT 
+- possibility to switch on/off some extra features as : RSA decryption/encryption, anonymous JWT, sending confirmation email
 
 --------
 
 ## DEVELOPERS
 
 - Hi! Nice to see you around :)
-- Check also the **[`prod_snippets`](./prod_snippets)** if you encounter problems while installing locally or setting your server : [install mongodb](./prod_snippets/prod_mongodb.md), [set up supervisor](./prod_snippets/prod_supervisor.md), [set up git](./prod_snippets/prod_git.md), [set up nginx](./prod_snippets/prod_nginx.md), [set up ubuntu](./prod_snippets/prod_ubuntu.md)...
+- Check also the **[`prod_snippets` folder](./prod_snippets)** if you encounter problems while installing locally or setting your server : [install mongodb](./prod_snippets/prod_mongodb.md), [set up supervisor](./prod_snippets/prod_supervisor.md), [set up git](./prod_snippets/prod_git.md), [set up nginx](./prod_snippets/prod_nginx.md), [set up ubuntu](./prod_snippets/prod_ubuntu.md)...
 - If you want to contribute please check out our **[guidelines](./GUIDELINES_DEV.md)** first
 
 
@@ -51,19 +51,24 @@
 
 - JWT (JSON Web Tokens) :
 	- access and refresh token for security over all the app
-- user :
-	- anonymous login (automatic)
+- RSA encryption (optionnal)
+	- RSA encryption : server can send to the client a RSA public key for encryption client-side
+	- RSA decryption : server can decode forms (login/register) encoded client-side with the RSA public key
+
+- Users management :
 	- login / register user 
-	- confirm user by sending a confirmation link (protected) in an email 
+	- anonymous login (optionnal) : sends a JWT for an anonymous use. Can be expected by server for routes with `@anonymous_required` decorator like `/login` or `/register`
+	- confirm email (optionnal in dev mode): confirm user by sending a confirmation link (protected) in an email 
 	- password forgotten by sending a link (protected) in an email with redirection to new password form 
 	- reset password from client interface (protected) ...
+	s
 - Documentation 
 	- on all API endpoints with Swagger (and some patience from the developers)
 
 ##### Features TO DO  :
 - user : 
-	- edit user
-	- edit email
+	- edit user (working on)
+	- edit email (protect email update)
 
 
 -------
@@ -125,8 +130,8 @@ There are some options you can play with while running the service :
 - `--mode` : `dev` (default), `dev_email`, `preprod`, `production`
 - `--host` : the IP of your server (default : `localhost`)
 - `--port` : the port you want to run the app on (default : `4100`)
-- `--salt` : if you receive the login|register forms encrypted (default : `yes`))
-- `--anojwt` : if you need to check the presence/validity of an "anonymous_jwt" in the request (default : `yes`), particularly at the `/login` and `/register` endpoints
+- `--rsa` : if you want receive the login|register forms RSA encrypted and send the RSA public key(default : `no`))
+- `--anojwt` : if you need to check the presence/validity of an "anonymous_jwt" in the request (default : `no`), particularly at the `/login` and `/register` endpoints
 
 In practice : 
 
@@ -139,7 +144,7 @@ In practice :
 - you can choose to deactivate the integrated RSA decryption in the `login` and `register` endpoints
 
 	```bash
-	python appserver.py --salt=no
+	python appserver.py --rsa=no
 	``` 
 
 - you can choose to deactivate the check for an anonymous JWT in the `login` and `register` endpoints
@@ -150,7 +155,7 @@ In practice :
 
 - you can add up those options in the command line
 	```bash
-	python appserver.py --anojwt=no --salt=yes --mode=dev_email
+	python appserver.py --anojwt=no --rsa=yes --mode=dev_email
 	``` 
 
 ### _PRODUCTION_
