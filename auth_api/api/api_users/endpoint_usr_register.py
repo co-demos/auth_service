@@ -78,7 +78,7 @@ class Register(Resource):
 		### TO DO = add a ghost field to filter out spams and robots
 
 		### retrieve infos from form 
-		if app.config["SALT_MODE"] == "yes" : 
+		if app.config["RSA_MODE"] == "yes" : 
 			payload_email_encrypted = ns.payload["email_encrypt"]
 			log.debug("payload_email_encrypted : \n%s", payload_email_encrypted )
 			payload_email = email_decoded = RSAdecrypt(payload_email_encrypted)
@@ -150,11 +150,11 @@ class Register(Resource):
 			tokens = {
 					'access_token'		: access_token,
 					'refresh_token'		: refresh_token,
-					# 'salt_token' 			: public_key_str,
+					# 'rsa_token' 			: public_key_str,
 					# 'access_token_confirm_email' 	: access_token_confirm_email
 			}
-			if app.config["SALT_MODE"]=="yes" : 
-				tokens["salt_token"] : public_key_str
+			if app.config["RSA_MODE"]=="yes" : 
+				tokens["rsa_token"] : public_key_str
 
 			log.info("tokens : \n %s", pformat(tokens))
 
@@ -294,10 +294,10 @@ class Confirm_email(Resource):
 				tokens = {
 							'access_token'	: access_token,
 							'refresh_token'	: refresh_token,
-							# 'salt_token' 		: public_key_str,
+							# 'rsa_token' 		: public_key_str,
 						}
-				if app.config["SALT_MODE"]=="yes" : 
-					tokens["salt_token"] : public_key_str
+				if app.config["RSA_MODE"]=="yes" : 
+					tokens["rsa_token"] : public_key_str
 				log.info("tokens : \n%s", pformat(tokens))
 
 				return { 
@@ -316,10 +316,10 @@ class Confirm_email(Resource):
 				tokens = {
 							'access_token'	: access_token,
 							'refresh_token'	: refresh_token,
-							# 'salt_token' 		: public_key_str,
+							# 'rsa_token' 		: public_key_str,
 						}
-				if app.config["SALT_MODE"]=="yes" : 
-					tokens["salt_token"] : public_key_str
+				if app.config["RSA_MODE"]=="yes" : 
+					tokens["rsa_token"] : public_key_str
 				log.info("tokens : \n%s", pformat(tokens))
 					
 				return { 

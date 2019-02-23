@@ -60,8 +60,8 @@ if app.config["ANOJWT_MODE"] == "yes" :
 			### create a random string for later login / register encryption in frontend
 			anonymous_access_token_decoded	= decode_token(anonymous_access_token)
 			log.debug("anonymous_access_token_decoded : \n %s", pformat(anonymous_access_token_decoded) )
-			# salt_token	= anonymous_access_token_decoded['jti']
-			# salt_token	= salt_token.replace("-", "")
+			# rsa_token	= anonymous_access_token_decoded['jti']
+			# rsa_token	= rsa_token.replace("-", "")
 
 			### create corresponding refresh token
 			expires 									= app.config["JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES"]
@@ -74,12 +74,12 @@ if app.config["ANOJWT_MODE"] == "yes" :
 			tokens = {
 						'access_token' 	: anonymous_access_token,
 						'refresh_token' : anonymous_refresh_token,
-						# 'salt_token' 		: salt_token,
+						# 'rsa_token' 		: rsa_token,
 					}
-			if app.config["SALT_MODE"]=="yes" : 
-				salt_token 		= public_key_str #.decode("utf-8")
-				log.debug("salt_token 					: \n %s", salt_token )
-				tokens["salt_token"] : salt_token
+			if app.config["RSA_MODE"]=="yes" : 
+				rsa_token 		= public_key_str #.decode("utf-8")
+				log.debug("rsa_token 					: \n %s", rsa_token )
+				tokens["rsa_token"] : rsa_token
 
 			return {	
 						"msg" 		: "anonymous user - an anonymous access_token has been created + a valid refresh_token for {} hours".format(expires) , 
@@ -127,7 +127,7 @@ class Login(Resource):
 		
 
 		### retrieve infos from form
-		if app.config["SALT_MODE"] == "yes" : 
+		if app.config["RSA_MODE"] == "yes" : 
 			### DECYPHERING THE STRINGS FROM RSA JSENCRYPT IN FRONT !!!!!!
 			payload_email_encrypted   	= ns.payload["email_encrypt"]
 			log.debug("payload_email_encrypted : \n%s", payload_email_encrypted )
@@ -212,7 +212,7 @@ class Login(Resource):
 				tokens = {
 						'access_token'	: new_access_token,
 						'refresh_token' : refresh_token,
-						'salt_token' 	: public_key_str,
+						'rsa_token' 	: public_key_str,
 				}
 				print()
 				log.debug("user_light['_id'] : %s", user_light["_id"] )

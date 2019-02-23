@@ -144,10 +144,10 @@ class NewAccessToken(Resource) :
 			### store tokens
 			tokens = {
 					'access_token'	: new_access_token,
-					# 'salt_token' 	: public_key_str,
+					# 'rsa_token' 	: public_key_str,
 			}
-			if app.config["SALT_MODE"]=="yes" : 
-				tokens["salt_token"] : salt_token
+			if app.config["RSA_MODE"]=="yes" : 
+				tokens["rsa_token"] : rsa_token
 
 			return {	
 						"msg" 		: "new access token for user : {} ".format(user_identity) , 

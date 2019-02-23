@@ -72,8 +72,8 @@ log.debug("... mail : \n%s", pformat(mail.__dict__))
 def create_app( 
 								app_name='AUTH_API', 
 								run_mode="dev", 
-								salt_mode="yes", 
-								anojwt_mode="yes"  
+								RSA_mode="no", 
+								anojwt_mode="no"  
 							):  
 
 	log.debug ("... creating app ...")
@@ -95,7 +95,7 @@ def create_app(
 		app.config.from_object('auth_api.config.BaseConfig')
 
 	### append SALT and ANOJWT env vars to config 
-	app.config["SALT_MODE"] 	= salt_mode
+	app.config["RSA_MODE"] 	= RSA_mode
 	app.config["ANOJWT_MODE"] = anojwt_mode
 
 	print()

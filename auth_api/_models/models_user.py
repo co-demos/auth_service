@@ -114,7 +114,7 @@ class NewUser :
 
 	def __init__(self, ns_):
   	
-		if app.config["SALT_MODE"] == "yes" : 
+		if app.config["RSA_MODE"] == "yes" : 
 			self.mod = ns_.model( "User_register", user_register )
 		else : 
 			self.mod = ns_.model( "User_register", user_register_nosalt )
@@ -132,7 +132,7 @@ class LoginUser :
 
 	def __init__(self, ns_):
 
-		if app.config["SALT_MODE"] == "yes" : 
+		if app.config["RSA_MODE"] == "yes" : 
 			self.mod = ns_.model( "User_login", user_login )
 		else : 
 			self.mod = ns_.model( "User_login", user_login_nosalt )
