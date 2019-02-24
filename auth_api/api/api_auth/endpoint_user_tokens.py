@@ -147,7 +147,7 @@ class NewAccessToken(Resource) :
 					# 'rsa_token' 	: public_key_str,
 			}
 			if app.config["RSA_MODE"]=="yes" : 
-				tokens["rsa_token"] : rsa_token
+				tokens["rsa_token"] = rsa_token
 
 			return {	
 						"msg" 		: "new access token for user : {} ".format(user_identity) , 

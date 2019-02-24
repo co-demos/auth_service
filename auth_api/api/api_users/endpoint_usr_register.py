@@ -111,7 +111,7 @@ class Register(Resource):
 				"infos" 		: ns.payload, 
 				# "auth" 	: ns.payload 
 				"log"				: { "created_at" 	: datetime.utcnow() },
-				"profile" 	: { "lang" 		: ns.payload["lang"]}
+				"profile" 	: { "lang" 				: ns.payload["lang"]}
 			}
 			new_user 															= marshal( new_user_infos , model_user_complete_in )
 			new_user["auth"]["pwd"] 							= hashpass
@@ -154,7 +154,7 @@ class Register(Resource):
 					# 'access_token_confirm_email' 	: access_token_confirm_email
 			}
 			if app.config["RSA_MODE"]=="yes" : 
-				tokens["rsa_token"] : public_key_str
+				tokens["rsa_token"] = public_key_str
 
 			log.info("tokens : \n %s", pformat(tokens))
 
@@ -276,7 +276,7 @@ class Confirm_email(Resource):
 				
 				### confirm user's email and create a real refresh_token
 				user_to_confirm["auth"]["refr_tok"] = refresh_token
-				user_to_confirm["auth"]["role"] 	= "registred"
+				user_to_confirm["auth"]["role"] 		= "registred"
 				user_to_confirm["auth"]["conf_usr"] = True
 
 				### register as admin if user is the first to be created and confirmed in collection
@@ -297,7 +297,7 @@ class Confirm_email(Resource):
 							# 'rsa_token' 		: public_key_str,
 						}
 				if app.config["RSA_MODE"]=="yes" : 
-					tokens["rsa_token"] : public_key_str
+					tokens["rsa_token"] = public_key_str
 				log.info("tokens : \n%s", pformat(tokens))
 
 				return { 
@@ -319,7 +319,7 @@ class Confirm_email(Resource):
 							# 'rsa_token' 		: public_key_str,
 						}
 				if app.config["RSA_MODE"]=="yes" : 
-					tokens["rsa_token"] : public_key_str
+					tokens["rsa_token"] = public_key_str
 				log.info("tokens : \n%s", pformat(tokens))
 					
 				return { 

@@ -38,7 +38,7 @@ from flask_socketio import SocketIO
 def app_runner(mode, host, port, rsa, anojwt) : 
 
 	""" 
-	runner for the SOLIDATA backend Flask app 
+	runner for the TOKTOK backend Flask app 
 
 	in command line just type : 
 	"python appserver.py"
@@ -69,7 +69,7 @@ def app_runner(mode, host, port, rsa, anojwt) :
 	print()
 
 
-	log.debug("\n--- STARTING AUTH API ---\n")
+	log.debug("\n--- STARTING TOKTOK AUTH API ---\n")
 
 	from auth_api.application import create_app
 
