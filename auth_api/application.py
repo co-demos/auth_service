@@ -70,7 +70,7 @@ log.debug("... mail : \n%s", pformat(mail.__dict__))
 # application factory, see: http://flask.pocoo.org/docs/patterns/appfactories/
 
 def create_app( 
-								app_name='AUTH_API', 
+								app_name='TOKTOK_AUTH_API', 
 								run_mode="dev", 
 								RSA_mode="no", 
 								anojwt_mode="no"  

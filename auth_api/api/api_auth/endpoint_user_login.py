@@ -78,8 +78,8 @@ if app.config["ANOJWT_MODE"] == "yes" :
 					}
 			if app.config["RSA_MODE"]=="yes" : 
 				rsa_token 		= public_key_str #.decode("utf-8")
-				log.debug("rsa_token 					: \n %s", rsa_token )
-				tokens["rsa_token"] : rsa_token
+				log.debug("rsa_token 	: \n %s", rsa_token )
+				tokens["rsa_token"] = rsa_token
 
 			return {	
 						"msg" 		: "anonymous user - an anonymous access_token has been created + a valid refresh_token for {} hours".format(expires) , 
@@ -199,8 +199,8 @@ class Login(Resource):
 				log.debug("... refresh_token : create a new one...")
 				if payload_renew_refr_token and user["auth"]["conf_usr"] == True :
 					log.debug("... refresh_token")
-					expires 					= app.config["JWT_REFRESH_TOKEN_EXPIRES"] 
-					refresh_token 				= create_refresh_token( identity=user_light, expires_delta=expires )
+					expires 									= app.config["JWT_REFRESH_TOKEN_EXPIRES"] 
+					refresh_token 						= create_refresh_token( identity=user_light, expires_delta=expires )
 					user["auth"]["refr_tok"] 	= refresh_token
 				
 				### retrieve existing refresh_token from db
@@ -209,11 +209,20 @@ class Login(Resource):
 					refresh_token 		= user["auth"]["refr_tok"]  
 
 				### store tokens in dict
+				# tokens = {
+				# 		'access_token'	: new_access_token,
+				# 		'refresh_token' : refresh_token,
+				# 		'rsa_token'		 	: public_key_str,
+				# }
 				tokens = {
-						'access_token'	: new_access_token,
-						'refresh_token' : refresh_token,
-						'rsa_token' 	: public_key_str,
-				}
+							'access_token' 	: new_access_token,
+							'refresh_token' : refresh_token,
+						}
+				if app.config["RSA_MODE"]=="yes" : 
+					rsa_token 		= public_key_str #.decode("utf-8")
+					log.debug("salt_token 	: \n %s", rsa_token )
+					tokens["salt_token"] = rsa_token
+
 				print()
 				log.debug("user_light['_id'] : %s", user_light["_id"] )
 				log.debug("user_light 		 : \n%s", user_light )
