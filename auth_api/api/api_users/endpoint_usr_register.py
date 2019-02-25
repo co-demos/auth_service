@@ -75,7 +75,11 @@ class Register(Resource):
 		log.debug( "ROUTE class : %s", self.__class__.__name__ )
 		log.debug ("payload : \n{}".format(pformat(ns.payload)))
 
-		### TO DO = add a ghost field to filter out spams and robots
+		### antispam/ghost field to filter out spams and robots
+		antispam_check = True
+		if app.config["ANTISPAM_MODE"] == "yes" : 
+			payload_antispam = ns.payload["antispam"]
+			antispam_check = payload_antispam == app.config["ANTISPAM_VALUE"]
 
 		### retrieve infos from form 
 		if app.config["RSA_MODE"] == "yes" : 
@@ -100,7 +104,7 @@ class Register(Resource):
 		existing_user = mongo_users.find_one({"infos.email" : payload_email})
 		log.debug("existing_user : %s ", pformat(existing_user))
 
-		if existing_user is None and payload_pwd not in bad_passwords and payload_email != "anonymous" :
+		if antispam_check and existing_user is None and payload_pwd not in bad_passwords and payload_email != "anonymous" :
 
 			### create hashpassword
 			hashpass = generate_password_hash(payload_pwd, method='sha256')
@@ -201,11 +205,20 @@ class Register(Resource):
 
 		else :
 			
-			return {
-						"msg" : "email '{}' is already taken ".format(payload_email)
-					}, 401
+			if existing_user : 
+				return {
+							"msg" : "email '{}' is already taken ".format(payload_email)
+						}, 401
 
+			if antispam_check == False : 
+				return {
+							"msg" : "aaaah you're a spam !!! "
+						}, 406
 
+			else : 
+				return {
+							"msg" : "error and checkmate... "
+						}, 404
 
 @ns.doc(security='apikey')
 @ns.route("/confirm_email")

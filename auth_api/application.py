@@ -72,6 +72,8 @@ log.debug("... mail : \n%s", pformat(mail.__dict__))
 def create_app( 
 								app_name='TOKTOK_AUTH_API', 
 								run_mode="dev", 
+								antispam_mode="no", 
+								antispam_value="", 
 								RSA_mode="no", 
 								anojwt_mode="no"  
 							):  
@@ -94,9 +96,11 @@ def create_app(
 	else : ### for instance "dev" or "default" or whatever not above ... mode will be considered as "dev" by the config.py file
 		app.config.from_object('auth_api.config.BaseConfig')
 
-	### append SALT and ANOJWT env vars to config 
-	app.config["RSA_MODE"] 		= RSA_mode
-	app.config["ANOJWT_MODE"] = anojwt_mode
+	### append SALT / ANOJWT / ANTISPAM / ANTISPAM_VAL env vars to config 
+	app.config["RSA_MODE"]	 			= RSA_mode
+	app.config["ANOJWT_MODE"] 		= anojwt_mode
+	app.config["ANTISPAM_MODE"]	 	= antispam_mode
+	app.config["ANTISPAM_VALUE"] 	= antispam_value
 
 	print()
 	log.debug("... app.config :\n %s", pformat(app.config))

@@ -93,7 +93,7 @@ class Login(Resource):
 
 	@ns.doc('user_login')
 	@ns.doc(security='apikey')
-	@ns.expect(model_login_user)
+	@ns.expect(model_login_user, validate=True)
 	@anonymous_required
 	@ns.doc(responses={200: 'success : user logged with its access and refresh tokens'})
 	@ns.doc(responses={401: 'error client : incorrect login or no user'})
@@ -125,6 +125,11 @@ class Login(Resource):
 		claims 			= get_jwt_claims() 
 		log.debug("claims : \n %s", pformat(claims) )
 		
+		### antispam/ghost field to filter out spams and robots
+		antispam_check = True
+		if app.config["ANTISPAM_MODE"] == "yes" : 
+			payload_antispam = ns.payload["antispam"]
+			antispam_check = payload_antispam == app.config["ANTISPAM_VALUE"]
 
 		### retrieve infos from form
 		if app.config["RSA_MODE"] == "yes" : 
@@ -178,7 +183,7 @@ class Login(Resource):
 						"msg" : "incorrect login / {}".format(error_message) 
 					}, 401
 
-		if user : 
+		if user and antispam_check : 
 			
 			### check password
 			pwd = user["auth"]["pwd"]
@@ -255,5 +260,10 @@ class Login(Resource):
 							"msg" 				: "incorrect login / {}".format(error_message) 
 						}, 401
 
+		else : 
 
+			error_message = "bad antispam_check"
+			return { 
+						"msg" 				: "incorrect login / {}".format(error_message) 
+					}, 406
 

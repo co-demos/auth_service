@@ -87,7 +87,13 @@ class EmailUser :
 	"""
 
 	def __init__(self, ns_):
-		self.mod = ns_.model( "User_email", user_identity )
+		
+		schema = user_identity
+		
+		if app.config["ANTISPAM_MODE"] == "yes" : 
+			schema = { **schema, **antispam_field }
+
+		self.mod = ns_.model( "User_email", schema )
 	
 	@property
 	def model(self): 
@@ -100,7 +106,13 @@ class PasswordUser :
 	"""
 
 	def __init__(self, ns_):
-		self.mod = ns_.model( "User_password", user_pwd )
+
+		schema = user_pwd
+
+		# if app.config["ANTISPAM_MODE"] == "yes" : 
+		# 	schema = { **schema, **antispam_field }
+
+		self.mod = ns_.model( "User_password", schema )
 	
 	@property
 	def model(self): 
@@ -115,10 +127,14 @@ class NewUser :
 	def __init__(self, ns_):
   	
 		if app.config["RSA_MODE"] == "yes" : 
-			self.mod = ns_.model( "User_register", user_register )
+			schema = user_register 
 		else : 
-			self.mod = ns_.model( "User_register", user_register_nosalt )
+			schema = user_register_nosalt
 
+		if app.config["ANTISPAM_MODE"] == "yes" : 
+			schema = { **schema, **antispam_field }
+
+		self.mod = ns_.model( "User_register", schema )
 	
 	@property
 	def model(self): 
@@ -133,10 +149,14 @@ class LoginUser :
 	def __init__(self, ns_):
 
 		if app.config["RSA_MODE"] == "yes" : 
-			self.mod = ns_.model( "User_login", user_login )
+			schema = user_login
 		else : 
-			self.mod = ns_.model( "User_login", user_login_nosalt )
+			schema = user_login_nosalt 
 
+		if app.config["ANTISPAM_MODE"] == "yes" : 
+			schema = { **schema, **antispam_field }
+
+		self.mod = ns_.model( "User_login", schema )
 	
 	@property
 	def model(self): 

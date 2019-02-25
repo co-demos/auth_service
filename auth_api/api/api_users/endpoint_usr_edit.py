@@ -20,7 +20,7 @@ model_doc 						= User_infos(ns)
 model_doc_out					= model_doc.model_complete_out
 model_doc_guest_out		= model_doc.model_guest_out
 model_doc_min					= model_doc.model_minimum
-models 				= {
+models				 				= {
 	"model_doc_out" 		: model_doc_out ,
 	"model_doc_guest_out" 	: model_doc_guest_out ,
 	"model_doc_min" 		: model_doc_min ,
