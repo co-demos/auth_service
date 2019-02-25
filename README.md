@@ -127,11 +127,13 @@
 ### _CLI OPTIONS_
 
 There are some options you can play with while running the service :
-- `--mode` : `dev` (default), `dev_email`, `preprod`, `production`
-- `--host` : the IP of your server (default : `localhost`)
-- `--port` : the port you want to run the app on (default : `4100`)
-- `--rsa` : if you want receive the login|register forms RSA encrypted and send the RSA public key(default : `no`))
-- `--anojwt` : if you need to check the presence/validity of an "anonymous_jwt" in the request (default : `no`), particularly at the `/login` and `/register` endpoints
+- **`--mode`** : `dev` (default), `dev_email`, `preprod`, `production`
+- **`--host`** : the IP of your server (default : `localhost`)
+- **`--port`** : the port you want to run the app on (default : `4100`)
+- **`--rsa`** : if you want receive the forms RSA encrypted and send the RSA public key (default : `no`)... protects the `/login` + `/register` +  `/password_forgotten` + `/reset_password` endpoints
+- **`--anojwt`** : if you need to check the presence/validity of an "anonymous_jwt" in the request (default : `no`)... protects the `/login` + `/register` +  `/password_forgotten`  endpoints
+- **`--antispam`** : if you need to check the presence/validity" in the request (default : `no`)... protects at the `/login` + `/register` + `/password_forgotten` endpoints
+- **`--antispam_val`** : if you need to check the validity of the content of the `antispam` field in the form sent by the client (default : "")
 
 In practice : 
 
@@ -141,21 +143,27 @@ In practice :
 	python appserver.py --mode=dev_email
 	``` 
 
-- you can choose to deactivate the integrated RSA decryption in the `login` and `register` endpoints
+- you can choose to deactivate the integrated RSA decryption in the `/login` and `/register` endpoints
 
 	```bash
 	python appserver.py --rsa=no
 	``` 
 
-- you can choose to deactivate the check for an anonymous JWT in the `login` and `register` endpoints
+- you can choose to activate the check for an anonymous JWT in the `/login` and `/register` endpoints
 
 	```bash
-	python appserver.py --anojwt=no
+	python appserver.py --anojwt=yes
+	``` 
+
+- you can choose to activate the antispam in the `/login` and `/register` endpoints
+
+	```bash
+	python appserver.py --antispam=yes --antispam_val=my-value
 	``` 
 
 - you can add up those options in the command line
 	```bash
-	python appserver.py --anojwt=no --rsa=yes --mode=dev_email
+	python appserver.py --anojwt=no --rsa=yes --mode=dev_email --antispam=yes
 	``` 
 
 ### _PRODUCTION_

@@ -38,6 +38,16 @@ url_link				= fields.String(
 										default			= '',
 										required		= False,
 									)
+antispam				= fields.String(
+										description	= "antispam field",
+										attribute		= "antispam",
+										example			= "antispam-string-to-check",
+										default			= '',
+										required		= True,
+									)
+antispam_field 	= {
+	"antispam"	: antispam,
+}
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### for document updates
@@ -245,7 +255,7 @@ oid_fld 			= IdField(
 
 ### store a correspondance dict of oids...
 oid_dict = {
-	"oid"	: { "field" : oid , 	"fullname" : "oid" } ,
+	"oid"		: { "field" : oid , 		"fullname" : "oid" } ,
 	"usr" 	: { "field" : oid_usr , "fullname" : "user" } ,
 }
 

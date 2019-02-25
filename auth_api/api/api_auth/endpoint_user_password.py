@@ -53,8 +53,24 @@ class PasswordForgotten(Resource):
 		log.debug ("payload : \n{}".format(pformat(ns.payload)))
 
 		### retrieve infos from form
-		payload_email = ns.payload["email"]
-		log.info("...'{}' has forgotten its password...".format(payload_email) )
+		# payload_email = ns.payload["email"]
+		# log.info("...'{}' has forgotten its password...".format(payload_email) )
+
+		### retrieve infos from form 
+		if app.config["RSA_MODE"] == "yes" : 
+			payload_email_encrypted = ns.payload["email_encrypt"]
+			log.debug("payload_email_encrypted : \n%s", payload_email_encrypted )
+			payload_email = email_decoded = RSAdecrypt(payload_email_encrypted)
+			log.debug("email_decoded    : %s", email_decoded )
+		else : 
+			payload_email= ns.payload["email"]
+			log.debug("payload_email : \n%s", payload_email )
+
+		### antispam/ghost field to filter out spams and robots
+		antispam_check = True
+		if app.config["ANTISPAM_MODE"] == "yes" : 
+			payload_antispam = ns.payload["antispam"]
+			antispam_check = payload_antispam == app.config["ANTISPAM_VALUE"]
 
 		### retrieve user from db
 		user = mongo_users.find_one( {"infos.email" : payload_email } ) #, {"_id": 0 })
@@ -66,7 +82,7 @@ class PasswordForgotten(Resource):
 						"msg" : "email {} doesn't exists in db".format(payload_email) 
 					}, 401
 
-		if user :  
+		if user and antispam_check :  
 			
 			### marshal user's info 
 			user_light							= marshal( user , model_access_user)
@@ -98,7 +114,10 @@ class PasswordForgotten(Resource):
 						"expires" : str(expires),
 					}, 200
 
-
+		else : 
+			return { 	
+						"msg" : "email {} doesn't exists in db but bad antispam_check".format(payload_email) 
+					}, 406
 
 
 # The config  query paramater where the JWT is looked for is `token`,
@@ -190,8 +209,19 @@ class ResetPassword(Resource):
 		log.info( "...'{}' has posted its new password...".format(user_email) ) 
 
 		### retrieve infos from form 
-		payload_pwd 	= ns.payload["pwd"]
-		log.debug("payload_pwd : %s", payload_pwd )
+		# payload_pwd 	= ns.payload["pwd"]
+		# log.debug("payload_pwd : %s", payload_pwd )
+
+		### retrieve infos from form 
+		if app.config["RSA_MODE"] == "yes" : 
+			payload_pwd_encrypted = ns.payload["pwd_encrypt"]
+			log.debug("payload_pwd_encrypted : \n%s", payload_pwd_encrypted )
+			payload_pwd = password_decoded = RSAdecrypt(payload_pwd_encrypted)
+			log.debug("password_decoded    : %s", password_decoded )
+
+		else : 
+			payload_pwd = ns.payload["pwd"]
+			log.debug("payload_pwd : \n%s", payload_pwd )
 
 		### validate password
 		if payload_pwd not in bad_passwords : 

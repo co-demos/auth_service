@@ -11,9 +11,9 @@ log.debug("... loading schema_users.py ...")
 
 from flask_restplus import fields 
 
-from auth_api._choices import * 
-from .schema_generic import *
-from .schema_logs import *
+from auth_api._choices 	import * 
+from .schema_generic 		import *
+from .schema_logs 			import *
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
