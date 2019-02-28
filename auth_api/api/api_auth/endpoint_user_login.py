@@ -88,7 +88,7 @@ if app.config["ANOJWT_MODE"] == "yes" :
 
 
 
-@ns.route('/')
+@ns.route('')
 class Login(Resource):
 
 	@ns.doc('user_login')
