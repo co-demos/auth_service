@@ -24,7 +24,7 @@ blueprint = Blueprint( 'api_auth', __name__, template_folder=app.config["TEMPLAT
 api = Api( 	blueprint,
 						title						= "TokTok / Auth API : AUTH SERVER",
 						version					= "0.3",
-						description			= "auth server / manages tokens",
+						description			= app.config["CODE_LINK"] + " : auth server / manages tokens",
 						doc							= '/documentation',
 						default					= 'login',
 						authorizations		= auth_check,
