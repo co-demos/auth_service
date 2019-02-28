@@ -54,9 +54,6 @@ def default_error_handler(e):
 from .endpoint_usr import 					ns as ns_usr_list
 api.add_namespace(ns_usr_list)
 
-# from .endpoint_user_login import ns as ns_user_login
-# api.add_namespace(ns_user_login)
-
 from .endpoint_usr_register import 	ns as ns_usr_register
 api.add_namespace(ns_usr_register)
 
