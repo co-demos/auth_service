@@ -22,7 +22,7 @@ user_roles = [
 	"system", 		### robot user
 
 	"admin", 		### real user and confirmed 
-	"staff",   		### can edit all datamodels : dmf + dmt
+	"staff",    ### can edit all datamodels : dmf + dmt
 
 	"registred", 	### confirmed email
 	
