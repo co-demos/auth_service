@@ -66,11 +66,11 @@ gunicorn-prod-stop:
 # restart-prod: down-prod up-prod
 
 # dev 
-up: gunicorn-dev
-down: gunicorn-dev-stop 
+up: network gunicorn-dev
+down: gunicorn-dev-stop network-stop
 restart: down up
 
 # prod
-up-prod: gunicorn-prod
-down-prod: gunicorn-prod-stop 
+up-prod: network gunicorn-prod
+down-prod: gunicorn-prod-stop network-stop
 restart-prod: down-prod up-prod
