@@ -28,10 +28,10 @@ export FRONTEND=${APP_PATH}
 ### network
 ### ============ ###
 
-network-stop:
-	docker network rm ${APP}
 network:
 	@docker network create ${APP} 2> /dev/null; true
+network-stop:
+	docker network rm ${APP}
 
 
 ### ============ ###
@@ -55,12 +55,22 @@ gunicorn-prod-stop:
 ### main make / docker commands
 ### ============================= ###
 
+# # dev 
+# up: network gunicorn-dev
+# down: gunicorn-dev-stop network-stop
+# restart: down up
+
+# # prod
+# up-prod: network gunicorn-prod
+# down-prod: gunicorn-prod-stop network-stop
+# restart-prod: down-prod up-prod
+
 # dev 
-up: network gunicorn-dev
-down: gunicorn-dev-stop network-stop
+up: gunicorn-dev
+down: gunicorn-dev-stop 
 restart: down up
 
 # prod
-up-prod: network gunicorn-prod
-down-prod: gunicorn-prod-stop network-stop
+up-prod: gunicorn-prod
+down-prod: gunicorn-prod-stop 
 restart-prod: down-prod up-prod

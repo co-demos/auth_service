@@ -12,7 +12,7 @@ env_path_global = Path('.') / 'example.env.global'
 load_dotenv(env_path_global, verbose=True)
 
 ### overide env vars for Docker
-os.environ["DOCKER_MODE"]	 = 'docker_on'
+os.environ["DOCKER_MODE"]   = 'docker_on'
 
 ### READ ENV VARS
 run=os.getenv('RUN_MODE', 'dev')
@@ -67,7 +67,8 @@ app = create_app(
 socketio = SocketIO(app)
 
 if __name__ == "main" :
-  	
-	log.debug("\n--- STARTING AUTH API (PROD) ---\n")
-	
-	app.run()
+    
+  log.debug("\n--- STARTING AUTH API (PROD) ---\n")
+  
+  # app.run()
+  app.run(host='0.0.0.0', port=4100)

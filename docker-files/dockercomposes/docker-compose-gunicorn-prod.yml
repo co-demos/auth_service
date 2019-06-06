@@ -1,7 +1,7 @@
 version: '2.1'
 services:
-  backend:
-    container_name: ${APP}-backend
+  toktok:
+    container_name: ${APP}-prod
     build:
       context: ${APP_PATH}
       dockerfile: ${DF_FOLDER_SUBPATH}/Dockerfile.gunicorn-prod
