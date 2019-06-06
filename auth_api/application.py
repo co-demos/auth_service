@@ -27,16 +27,16 @@ log.debug("... jwt_manager() ...")
 ### LOGIN MANAGER 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
-# from  	flask_login import 	LoginManager, login_user, logout_user, login_required, \
-# 				current_user
+# from    flask_login import   LoginManager, login_user, logout_user, login_required, \
+#         current_user
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### FLASK-ADMIN IMPORTS
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
-# from	flask_admin 							import Admin, AdminIndexView
-# from 	flask_admin.model 				import typefmt
-# from 	flask_admin.model.widgets import XEditableWidget
+# from  flask_admin               import Admin, AdminIndexView
+# from   flask_admin.model         import typefmt
+# from   flask_admin.model.widgets import XEditableWidget
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -52,7 +52,7 @@ from flask_pymongo import PyMongo
 
 # declare mongo empty connector
 mongo = PyMongo()
-log.debug("... mongo : \n%s", pformat(mongo.__dict__))
+# log.debug("... mongo : \n%s", pformat(mongo.__dict__))
 
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -60,7 +60,7 @@ log.debug("... mongo : \n%s", pformat(mongo.__dict__))
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 from flask_mail import Mail
 mail = Mail()
-log.debug("... mail : \n%s", pformat(mail.__dict__))
+# log.debug("... mail : \n%s", pformat(mail.__dict__))
 
 
 
@@ -71,9 +71,11 @@ log.debug("... mail : \n%s", pformat(mail.__dict__))
 
 def create_app( 
                 app_name='TOKTOK_AUTH_API', 
+
                 run_mode="dev", 
                 docker_mode="docker_off",
                 mongodb_mode="local",
+
                 antispam_mode="no", 
                 antispam_value="", 
                 RSA_mode="no", 
@@ -87,14 +89,13 @@ def create_app(
 
 
   ### load config 
-  if run_mode == "prod" : 	
-    app.config.from_object('auth_api.config_prod.Prod')
+  if run_mode == "prod" :   
+    # app.config.from_object('auth_api.config_prod.Prod')
+    app.config.from_object('auth_api.config.Prod')
   
   elif run_mode == "preprod" : 
-    app.config.from_object('auth_api.config_prod.Preprod')
-  
-  elif run_mode == "dev_email" : 
-    app.config.from_object('auth_api.config_prod.DevEmail')
+    # app.config.from_object('auth_api.config_prod.Preprod')
+    app.config.from_object('auth_api.config.Preprod')
   
   else : ### for instance "dev" or "default" or whatever not above ... mode will be considered as "dev" by the config.py file
     app.config.from_object('auth_api.config.BaseConfig')
@@ -104,29 +105,44 @@ def create_app(
 
 
   ### SET UP MONGO DB URI, DB, AND CONNECTOR
-  if mongodb_mode == 'server' : 
-    from .config_prod import MONGO_SERVER_URI, MONGO_SERVER_URI_OPTIONS, mongodb_dbnames_dict
-    db_name = mongodb_dbnames_dict[run_mode]
-    mongodb_uri = "{}/{}{}".format(MONGO_SERVER_URI, db_name, MONGO_SERVER_URI_OPTIONS)
 
-  elif mongodb_mode == 'distant' : 
-    from .config_prod import MONGO_DISTANT_URI, MONGO_DISTANT_URI_OPTIONS, mongodb_dbnames_dict
+  from .config import mongodb_roots_dict, mongodb_ports_dict, mongodb_dbnames_dict
+
+  # directly get URI if distant
+  if mongodb_mode == 'distant' : 
+    from .config import MONGO_DISTANT_URI, MONGO_DISTANT_URI_OPTIONS
     db_name = mongodb_dbnames_dict[run_mode]
     mongodb_uri = "{}/{}{}".format(MONGO_DISTANT_URI, db_name, MONGO_DISTANT_URI_OPTIONS)
   
-  else : # if mongodb_mode == 'local' : 
-    from .config import MONGO_LOCAL_URI, mongodb_dbnames_dict
-    db_name = mongodb_dbnames_dict[run_mode]
-    mongodb_uri = "{}/{}".format(MONGO_LOCAL_URI, db_name)
+  # get local URI if server or local
+  else :
+
+    mongodb_login = "" 
+    mongodb_options = "" 
+
+    if mongodb_mode == 'server' : 
+      from .config import MONGO_USER_SERVER, MONGO_PASS_SERVER, MONGO_OPTIONS_SERVER
+      ### get login if mongodb hosted on a server
+      mongodb_login = "{}:{}@".format(MONGO_USER_SERVER, MONGO_PASS_SERVER)
+      mongodb_options = MONGO_OPTIONS_SERVER ### must begin with "?"
+      
+    # else :  # if mongodb_mode == 'local' : 
+    #   from .config import mongodb_roots_dict, mongodb_ports_dict, mongodb_dbnames_dict
+
+    mongodb_root = mongodb_roots_dict[mongodb_mode][docker_mode]
+    mongodb_port = mongodb_ports_dict[mongodb_mode]
+    mongodb_dbname = mongodb_dbnames_dict[run_mode]
+
+    mongodb_uri = "mongodb://{}{}:{}/{}{}".format(mongodb_login, mongodb_root, mongodb_port, mongodb_dbname, mongodb_options)
 
   app.config["MONGO_URI"] = mongodb_uri
 
 
   ### append SALT / ANOJWT / ANTISPAM / ANTISPAM_VAL env vars to config 
-  app.config["RSA_MODE"]	 			= RSA_mode
-  app.config["ANOJWT_MODE"] 		= anojwt_mode
-  app.config["ANTISPAM_MODE"]	 	= antispam_mode
-  app.config["ANTISPAM_VALUE"] 	= antispam_value
+  app.config["RSA_MODE"]         = RSA_mode
+  app.config["ANOJWT_MODE"]      = anojwt_mode
+  app.config["ANTISPAM_MODE"]    = antispam_mode
+  app.config["ANTISPAM_VALUE"]   = antispam_value
 
   print()
   log.debug("... app.config :\n %s", pformat(app.config))
@@ -146,8 +162,9 @@ def create_app(
   mongo.init_app(app)  ### 
 
   ### init mail client
-  log.debug("... init mail ...")
-  mail.init_app(app)
+  if run_mode != 'dev' : 
+    log.debug("... init mail ...")
+    mail.init_app(app)
 
 
   with app.app_context() :
@@ -159,17 +176,19 @@ def create_app(
     # access mongodb collections
     from auth_api._core.queries_db import ( 
         
-        db_dict, db_dict_by_type,
-        Query_db_list,
-        Query_db_doc,
-        Query_db_delete,
+      db_dict, db_dict_by_type,
+      Query_db_list,
+      Query_db_doc,
+      Query_db_delete,
 
-        mongo_users,
+      mongo_users,
 
-        mongo_jwt_blacklist,
-        # mongo_licences,
-        # mongo_corr_dicts   ### all cd are treated as ds_i
-      ) 
+      mongo_jwt_blacklist,
+      mongo_tags,
+      mongo_licences,
+      
+      # mongo_corr_dicts   ### all cd are treated as ds_i
+    ) 
 
     # import token required functions
     from auth_api._auth import authorizations #, token_required
@@ -187,10 +206,10 @@ def create_app(
     ### registering all blueprints
     print()
     log.debug("... registering blueprints ...")
-    from auth_api.api.api_users 		import blueprint as api_users
+    from auth_api.api.api_users     import blueprint as api_users
     app.register_blueprint( api_users, url_prefix="/api/usr" )
 
-    from auth_api.api.api_auth 	import blueprint as api_auth
+    from auth_api.api.api_auth   import blueprint as api_auth
     app.register_blueprint( api_auth, url_prefix='/api/auth')
 
 
@@ -203,8 +222,8 @@ def create_app(
     ### DEBUG
     # @app.before_request
     # def debug_stuff():
-    # 	# pass
-    # 	log.debug ("\n%s", pformat(current_app.__dict__))
+    #   # pass
+    #   log.debug ("\n%s", pformat(current_app.__dict__))
 
 
   return app

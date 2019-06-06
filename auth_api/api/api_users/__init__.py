@@ -11,6 +11,7 @@ log.debug("\n>>> api_users ... creating api blueprint for USERS")
 
 document_type		= "usr"
 
+
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### create blueprint and api wrapper
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -18,7 +19,8 @@ document_type		= "usr"
 blueprint = Blueprint( 'api_users', __name__, template_folder=app.config["TEMPLATES_FOLDER"] )
 
 ### create API
-api = Api( 	blueprint,
+# api = Api( 	blueprint,
+api = Custom_API( blueprint,
 						title						= "TokTok / Auth API : USERS",
 						version					= "0.3",
 						description			= app.config["CODE_LINK"] + " : create, list, delete, edit... users",

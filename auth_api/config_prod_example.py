@@ -1,5 +1,5 @@
 """
-config_prod.py  
+config_prod_example.py  
 - settings for the flask application object
 """
 
