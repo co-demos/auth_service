@@ -6,14 +6,15 @@ config.py
 import os
 from datetime import timedelta
 
-config_name    = os.getenv('FLASK_CONFIGURATION', 'dev')
-config_mongodb = os.getenv('MONGODB_MODE',        'local')
-config_docker  = os.getenv('DOCKER_MODE',         'docker_off')
+# config_name    = os.getenv('FLASK_CONFIGURATION', 'dev')
+config_name    = os.getenv('RUN_MODE',     'dev')
+config_mongodb = os.getenv('MONGODB_MODE', 'local')
+config_docker  = os.getenv('DOCKER_MODE',  'docker_off')
 
 print()
-print("$ config_name : ", config_name)  
+print("$ config_name : ",    config_name)  
 print("$ config_mongodb : ", config_mongodb)  
-print("$ config_docker : ", config_docker)  
+print("$ config_docker : ",  config_docker)  
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### READ ENV VARS / MONGO
