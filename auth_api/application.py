@@ -104,38 +104,38 @@ def create_app(
 
 
 
-  ### SET UP MONGO DB URI, DB, AND CONNECTOR
+  # ### SET UP MONGO DB URI, DB, AND CONNECTOR
 
-  from .config import mongodb_roots_dict, mongodb_ports_dict, mongodb_dbnames_dict
+  # from .config import mongodb_roots_dict, mongodb_ports_dict, mongodb_dbnames_dict
 
-  # directly get URI if distant
-  if mongodb_mode == 'distant' : 
-    from .config import MONGO_DISTANT_URI, MONGO_DISTANT_URI_OPTIONS
-    db_name = mongodb_dbnames_dict[run_mode]
-    mongodb_uri = "{}/{}{}".format(MONGO_DISTANT_URI, db_name, MONGO_DISTANT_URI_OPTIONS)
+  # # directly get URI if distant
+  # if mongodb_mode == 'distant' : 
+  #   from .config import MONGO_DISTANT_URI, MONGO_DISTANT_URI_OPTIONS
+  #   db_name = mongodb_dbnames_dict[run_mode]
+  #   mongodb_uri = "{}/{}{}".format(MONGO_DISTANT_URI, db_name, MONGO_DISTANT_URI_OPTIONS)
   
-  # get local URI if server or local
-  else :
+  # # get local URI if server or local
+  # else :
 
-    mongodb_login = "" 
-    mongodb_options = "" 
+  #   mongodb_login = "" 
+  #   mongodb_options = "" 
 
-    if mongodb_mode == 'server' : 
-      from .config import MONGO_USER_SERVER, MONGO_PASS_SERVER, MONGO_OPTIONS_SERVER
-      ### get login if mongodb hosted on a server
-      mongodb_login = "{}:{}@".format(MONGO_USER_SERVER, MONGO_PASS_SERVER)
-      mongodb_options = MONGO_OPTIONS_SERVER ### must begin with "?"
+  #   if mongodb_mode == 'server' : 
+  #     from .config import MONGO_USER_SERVER, MONGO_PASS_SERVER, MONGO_OPTIONS_SERVER
+  #     ### get login if mongodb hosted on a server
+  #     mongodb_login = "{}:{}@".format(MONGO_USER_SERVER, MONGO_PASS_SERVER)
+  #     mongodb_options = MONGO_OPTIONS_SERVER ### must begin with "?"
       
-    # else :  # if mongodb_mode == 'local' : 
-    #   from .config import mongodb_roots_dict, mongodb_ports_dict, mongodb_dbnames_dict
+  #   # else :  # if mongodb_mode == 'local' : 
+  #   #   from .config import mongodb_roots_dict, mongodb_ports_dict, mongodb_dbnames_dict
 
-    mongodb_root = mongodb_roots_dict[mongodb_mode][docker_mode]
-    mongodb_port = mongodb_ports_dict[mongodb_mode]
-    mongodb_dbname = mongodb_dbnames_dict[run_mode]
+  #   mongodb_root = mongodb_roots_dict[mongodb_mode][docker_mode]
+  #   mongodb_port = mongodb_ports_dict[mongodb_mode]
+  #   mongodb_dbname = mongodb_dbnames_dict[run_mode]
 
-    mongodb_uri = "mongodb://{}{}:{}/{}{}".format(mongodb_login, mongodb_root, mongodb_port, mongodb_dbname, mongodb_options)
+  #   mongodb_uri = "mongodb://{}{}:{}/{}{}".format(mongodb_login, mongodb_root, mongodb_port, mongodb_dbname, mongodb_options)
 
-  app.config["MONGO_URI"] = mongodb_uri
+  # app.config["MONGO_URI"] = mongodb_uri
 
 
   ### append SALT / ANOJWT / ANTISPAM / ANTISPAM_VAL env vars to config 

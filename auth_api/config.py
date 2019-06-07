@@ -52,20 +52,48 @@ mongodb_ports_dict = {
   "server" : MONGO_PORT_SERVER,
 }
   
+# mongodb_dbnames_dict = {
+#   "dev"        : 'toktok',
+#   "dev_email"  : 'toktok',
+#   "preprod"    : 'toktok-preprod',
+#   "prod"       : 'toktok-prod',
+# }
 mongodb_dbnames_dict = {
-  "dev"        : 'toktok',
-  "dev_email"  : 'toktok',
-  "preprod"    : 'toktok-preprod',
-  "prod"       : 'toktok-prod',
+  "dev"       : os.getenv("MONGO_DBNAME", "toktok"),
+  "dev_email" : os.getenv("MONGO_DBNAME", "toktok"),
+  "preprod"   : os.getenv("MONGO_DBNAME_PREPROD", "toktok-preprod"),
+  "prod"      : os.getenv("MONGO_DBNAME_PROD",    "toktok-prod")
 }
+### get DB name
+mongodb_dbname = mongodb_dbnames_dict[config_name]
+
+if config_mongodb == "distant" :
+  mongodb_uri = "{}/{}{}".format(MONGO_DISTANT_URI, mongodb_dbname, MONGO_DISTANT_URI_OPTIONS)
+
+else : 
+  mongodb_root = mongodb_roots_dict[config_mongodb][config_docker]
+  mongodb_port = mongodb_ports_dict[config_mongodb]
+
+  ### get login if mongodb hosted on a server
+  mongodb_login = "" 
+  mongodb_options = "" 
+  if config_name == "server" : 
+    mongodb_login = "{}:{}@".format(MONGO_USER_SERVER, MONGO_PASS_SERVER)
+    mongodb_options = MONGO_OPTIONS_SERVER ### must begin with "?"
+
+  mongodb_uri = "mongodb://{}{}:{}/{}{}".format(mongodb_login, mongodb_root, mongodb_port, mongodb_dbname, mongodb_options)
+
+print(" --- MONGODB_URI : ", mongodb_uri) 
+os.environ["MONGODB_URI"] = mongodb_uri 
+
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 def formatEnvVar(var_name, format_type='boolean', separator=',') : 
 
-  print("formatEnvVar / var_name : ", var_name)
+  # print("formatEnvVar / var_name : ", var_name)
   env_var = os.getenv(var_name)
-  print("formatEnvVar / env_var : ", env_var)
+  # print("formatEnvVar / env_var : ", env_var)
 
   if format_type == 'boolean' : 
     if env_var in ['yes', 'Yes', 'YES', 'true', 'True', 'TRUE', '1'] : 
@@ -167,6 +195,7 @@ class BaseConfig(object):
 
 
   """ MONGODB """
+  MONGO_URI  = os.getenv("MONGODB_URI")
   # collections
   MONGO_COLL_TAGS           = os.getenv("MONGO_COLL_TAGS") # "tags"
   MONGO_COLL_USERS          = os.getenv("MONGO_COLL_USERS") # "users"
