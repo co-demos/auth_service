@@ -142,8 +142,10 @@ def app_runner(mode, docker, host, port, mongodb, rsa, anojwt, antispam, antispa
   ### apply / overwrites host configuration
   if mode != "dev" : 
     log.debug("=== mode : %s", mode)
-    os.environ["FLASK_CONFIGURATION"] = str(mode)
-    config_name = os.getenv('FLASK_CONFIGURATION', 'dev') ### 'default' for local dev
+    # os.environ["FLASK_CONFIGURATION"] = str(mode)
+    os.environ["RUN_MODE"] = str(mode)
+    # config_name = os.getenv('FLASK_CONFIGURATION', 'dev') ### 'default' for local dev
+    config_name = os.getenv('RUN_MODE', 'dev') ### 'default' for local dev
     log.debug("=== config_name : %s", config_name)
 
   app_debug = app.config["DEBUG"]
