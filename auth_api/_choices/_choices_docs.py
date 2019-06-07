@@ -24,7 +24,7 @@ doc_type_list		= [
 	# "dsr",
 	# "rec",
 	# "dso",
-	# "tag",
+	"tag",
 	"lic"
 ]
 
@@ -38,7 +38,7 @@ doc_type_dict		= {
 	# "dsr" : "dataset_raw",
 	# "rec" : "recipe",
 	# "dso" : "dataset_output",
-	# "tag" : "tag",
+	"tag" : "tag",
 	"lic" : "licence",
 	
 }
