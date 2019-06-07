@@ -8,7 +8,7 @@ from log_config import log, pformat
 from dotenv import load_dotenv
 from pathlib import Path  # python3 only
 env_path_global = Path('.') / '.env.global'
-env_path_mongodb = Path('.') / '.en.mongodb'
+env_path_mongodb = Path('.') / '.env.mongodb'
 env_path_mailing = Path('.') / '.env.mailing'
 
 load_dotenv(env_path_global, verbose=True)
