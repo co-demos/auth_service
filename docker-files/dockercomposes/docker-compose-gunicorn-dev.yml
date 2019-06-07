@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  toktok:
+    container_name: ${APP}-dev
+    build:
+      context: ${APP_PATH}
+      dockerfile: ${DF_FOLDER_SUBPATH}/Dockerfile.gunicorn-dev
+    restart: always
+    ports:
+      - "4100:4100"

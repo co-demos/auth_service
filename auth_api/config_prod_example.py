@@ -1,5 +1,5 @@
 """
-config_prod.py  
+config_prod_example.py  
 - settings for the flask application object
 """
 
@@ -8,6 +8,8 @@ from datetime import timedelta
 
 
 class BaseConfig(object):  
+
+	CODE_LINK					= "<a target='_blank' href='https://github.com/co-demos/toktok'>TokTok</a>"
 
 	RUN_MODE					= "dev"
 	DEBUG 						= True

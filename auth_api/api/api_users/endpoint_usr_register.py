@@ -54,7 +54,7 @@ for dft_usr in default_system_user_list :
 
 
 @ns.doc(security='apikey')
-@ns.route('/')
+@ns.route('')
 class Register(Resource):
 	
 	@ns.doc('usr_register')

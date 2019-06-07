@@ -31,6 +31,16 @@ from flask_jwt_extended import (
 		get_jwt_identity, get_jwt_claims, get_raw_jwt,
 )
 
+### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
+
+class Custom_API(Api):
+    @property
+    def specs_url(self):
+        '''
+        The Swagger specifications absolute url (ie. `swagger.json`)
+        :rtype: str
+        '''
+        return url_for(self.endpoint('specs'), _external=False)
 
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### generate RSA key

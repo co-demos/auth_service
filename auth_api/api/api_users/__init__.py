@@ -11,6 +11,7 @@ log.debug("\n>>> api_users ... creating api blueprint for USERS")
 
 document_type		= "usr"
 
+
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 ### create blueprint and api wrapper
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
@@ -18,10 +19,11 @@ document_type		= "usr"
 blueprint = Blueprint( 'api_users', __name__, template_folder=app.config["TEMPLATES_FOLDER"] )
 
 ### create API
-api = Api( 	blueprint,
+# api = Api( 	blueprint,
+api = Custom_API( blueprint,
 						title						= "TokTok / Auth API : USERS",
 						version					= "0.3",
-						description			= "create, list, delete, edit... users",
+						description			= app.config["CODE_LINK"] + " : create, list, delete, edit... users",
 						doc							= '/documentation',
 						default					= 'register',
 						authorizations	= auth_check,
@@ -53,9 +55,6 @@ def default_error_handler(e):
 
 from .endpoint_usr import 					ns as ns_usr_list
 api.add_namespace(ns_usr_list)
-
-# from .endpoint_user_login import ns as ns_user_login
-# api.add_namespace(ns_user_login)
 
 from .endpoint_usr_register import 	ns as ns_usr_register
 api.add_namespace(ns_usr_register)
