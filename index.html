@@ -3,22 +3,49 @@
 # Edit theme's home layout instead if you wanna make some changes
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
-title: open source auth service
+title: TOKTOK auth microservice
 classes: wide
 sidebar:
   nav: "docs"
 ---
 
 
-{% include figure image_path="/static/logos/logo_apiviz_15.png" alt="apiviz logo" %}
-
-<h1>TOKTOK AUTH SERVICE </h1>
-
-An open source authentication service built upon Flask Restplus framework
+{% include figure image_path="/static/logos/logo_auth_microservice_300px.png" alt="toktok logo" %}
 
 
-<br><br>
+<br>
 
+<h2>
+  TokTok is a microservice (a REST API) for users management and authentication based on access and refresh JSON Web Tokens (JWT)
+</h2>
+
+<ul> 
+  <li>
+    An open source authentication service built upon Flask Restplus framework
+  </li>
+  <li>
+    this auth server was extracted / insulated / forked / adapted from 
+      <a href="https://github.com/entrepreneur-interet-general/solidata_backend" target="_blank">
+        <code>solidata_backend project</code> 
+      </a>
+  </li>
+  <li>
+    compatible with the <strong>TADATA!</strong> sofware suite : 
+    <a href="https://github.com/co-demos/apiviz-frontend" target="_blank">
+      <code>ApiViz</code> 
+    </a> 
+    / 
+    <a href="https://github.com/entrepreneur-interet-general/solidata_frontend" target="_blank">
+      <code>Solidata_frontend</code>
+    </a> 
+    / 
+    <a href="https://github.com/entrepreneur-interet-general/OpenScraper" target="_blank">
+      <code>OpenScraper</code>
+    </a>
+  </li>
+</ul>
+
+<br>
 
 {% include figure image_path="/screenshots/endpoints_auth_server.png" alt="main screenshot" %}
 

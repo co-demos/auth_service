@@ -21,14 +21,14 @@ You have two different options to run (locally) Toktok on your computer/server :
 --------
 
 
-### _WITH DOCKER (locally or in production)_
+### _WITH DOCKER - LOCALLY
 
 
 - **locally - in your browser check this url**
     - install [Docker (here for mac OS)](https://docs.docker.com/docker-for-mac/install/) 
     - clone or [download](https://github.com/co-demos/ApiViz/archive/master.zip) the repo
     - [install MongoDB](https://docs.mongodb.com/manual/installation/) locally/on your server or get the URI of the MongoDB you're using
-    - go to your toktok folder
+    - go to your `/toktok` folder
     - launch docker and run : 
         ```sh
         make up

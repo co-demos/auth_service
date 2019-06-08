@@ -52,10 +52,3 @@ sudo supervisorctl status
 sudo systemctl restart toktok_preprod
 ```
 
-
-#### be sure firewall allows ngiinx and desired ports
-```
-sudo ufw delete allow 4100
-sudo ufw allow 'Nginx Full'
-```
-
