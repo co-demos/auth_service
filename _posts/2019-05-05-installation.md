@@ -21,7 +21,7 @@ You have two different options to run (locally) Toktok on your computer/server :
 --------
 
 
-### _WITH DOCKER - LOCALLY
+### WITH DOCKER - LOCALLY
 
 
 - **locally - in your browser check this url**
