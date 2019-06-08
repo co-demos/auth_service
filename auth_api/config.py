@@ -34,8 +34,6 @@ MONGO_OPTIONS_SERVER       = os.getenv('MONGO_OPTIONS_SERVER') # ""
 MONGO_DISTANT_URI          = os.getenv('MONGO_DISTANT_URI') # "mongodb://<DISTANT-USERNAME>:<DISTANT-PASSWORD>@<DISTANT-HOST>:<DISTANT-PORT>"  
 MONGO_DISTANT_URI_OPTIONS  = os.getenv('MONGO_DISTANT_URI_OPTIONS') # "?ssl=true&replicaSet=<REPLICA-SET>&authSource=admin&retryWrites=true"
 
-
-
 # temporary dicts
 mongodb_roots_dict = {
   "local"  : { 
@@ -52,13 +50,7 @@ mongodb_ports_dict = {
   "local"  : MONGO_PORT_LOCAL,
   "server" : MONGO_PORT_SERVER,
 }
-  
-# mongodb_dbnames_dict = {
-#   "dev"        : 'toktok',
-#   "dev_email"  : 'toktok',
-#   "preprod"    : 'toktok-preprod',
-#   "prod"       : 'toktok-prod',
-# }
+
 mongodb_dbnames_dict = {
   "dev"       : os.getenv("MONGO_DBNAME", "toktok"),
   "dev_email" : os.getenv("MONGO_DBNAME", "toktok"),
@@ -97,7 +89,7 @@ def formatEnvVar(var_name, format_type='boolean', separator=',') :
   # print("formatEnvVar / env_var : ", env_var)
 
   if format_type == 'boolean' : 
-    if env_var in ['yes', 'Yes', 'YES', 'true', 'True', 'TRUE', '1'] : 
+    if env_var in [ 'y', 'Y','yes', 'Yes', 'YES', 'true', 'True', 'TRUE', '1'] : 
       return True
     else :
       return False
@@ -112,7 +104,7 @@ def formatEnvVar(var_name, format_type='boolean', separator=',') :
     return env_var.split(separator)
 
   else : 
-    if env_var in ['none', 'None', 'NONE', 'nan', 'Nan', 'NAN', 'null', 'Null','NULL', 'undefined'] : 
+    if env_var in [ 'n', 'N', 'none', 'None', 'NONE', 'nan', 'Nan', 'NAN', 'null', 'Null','NULL', 'undefined', '0'] : 
       return None
     else : 
       return env_var
@@ -124,6 +116,9 @@ class BaseConfig(object):
 
   CODE_LINK = "<a target='_blank' href='https://github.com/co-demos/toktok'>TokTok</a>"
 
+  # APP VERSION 
+  APP_VERSION = os.getenv('APP_VERSION')
+  
   RUN_MODE = os.getenv("RUN_MODE")
 
   DEBUG = formatEnvVar('DEBUG', format_type='boolean') # True
@@ -136,8 +131,8 @@ class BaseConfig(object):
   DOMAIN_ROOT =  os.getenv("DOMAIN_ROOT")
   DOMAIN_PORT =  formatEnvVar("DOMAIN_PORT", format_type='integer')
 
+  http_mode = "http"
   if config_docker != 'docker_on' : 
-    http_mode = "http"
     if formatEnvVar("HTTPS_MODE", format_type='boolean') == True : 
       http_mode = "https"
 

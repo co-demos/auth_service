@@ -49,16 +49,16 @@ from flask_socketio import SocketIO
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 app = create_app( 
-  app_name='TOKTOK_AUTH_API', 
+  app_name='TOKTOK_AUTH_API_DEV', 
 
-    run_mode=run, 
-    docker_mode=docker,
-    mongodb_mode=mongodb,
+  run_mode=run, 
+  docker_mode=docker,
+  mongodb_mode=mongodb,
 
-    RSA_mode=RSA,
-    anojwt_mode=anojwt,
-    antispam_mode=antispam,
-    antispam_value=antispam_val,
+  RSA_mode=RSA,
+  anojwt_mode=anojwt,
+  antispam_mode=antispam,
+  antispam_value=antispam_val,
 )
 
 ### initiate socketio
