@@ -60,6 +60,7 @@ def app_runner(mode, docker, host, port, mongodb, rsa, anojwt, antispam, antispa
   --rsa : yes | no
   --antispam : yes | no
   --antispam_val  : '' | <your-string-to-check>
+  --https : true | false
 
   """
 
@@ -108,18 +109,10 @@ def app_runner(mode, docker, host, port, mongodb, rsa, anojwt, antispam, antispa
   load_dotenv(env_path_mailing, verbose=True)
 
   ### OVERIDE AND SET UP ENV VARS FROM CLI 
-  # os.environ["HTTPS_MODE"] = https
-  # if https == "true" : 
-  #   http_mode = "https"
-  # else : 
-  #   http_mode = "http"
   os.environ["DOMAIN_ROOT"]   = host
   os.environ["DOMAIN_PORT"]   = port
   os.environ["DOCKER_MODE"]   = docker
   os.environ["MONGODB_MODE"]  = mongodb
-
-  # os.environ["SERVER_NAME"]   = host + ":" + port
-  # os.environ["DOMAIN_NAME"]   = http_mode + "://" + host + ":" + port
 
 
   log.debug("\n--- STARTING TOKTOK AUTH API ---\n")

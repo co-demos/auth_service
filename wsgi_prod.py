@@ -36,16 +36,16 @@ antispam_val=os.getenv('ANTISPAM_VAL', 'my-string-to-check')
 
 
 app = create_app( 
-  app_name='TOKTOK_AUTH_API', 
+  app_name='TOKTOK_AUTH_API_PROD', 
 
-    run_mode=run, 
-    docker_mode=docker,
-    mongodb_mode=mongodb,
+  run_mode=run, 
+  docker_mode=docker,
+  mongodb_mode=mongodb,
 
-    RSA_mode=RSA,
-    anojwt_mode=anojwt,
-    antispam_mode=antispam,
-    antispam_value=antispam_val,
+  RSA_mode=RSA,
+  anojwt_mode=anojwt,
+  antispam_mode=antispam,
+  antispam_value=antispam_val,
 )
 
 ### initiate socketio

@@ -22,7 +22,7 @@ blueprint = Blueprint( 'api_users', __name__, template_folder=app.config["TEMPLA
 # api = Api( 	blueprint,
 api = Custom_API( blueprint,
 						title						= "TokTok / Auth API : USERS",
-						version					= "0.3",
+						version	        = app.config["APP_VERSION"],
 						description			= app.config["CODE_LINK"] + " : create, list, delete, edit... users",
 						doc							= '/documentation',
 						default					= 'register',
