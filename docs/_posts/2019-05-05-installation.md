@@ -177,11 +177,17 @@ At the CLI level you can use :
 @click.option('--https', default="false", nargs=1, help="The <https> mode you want the app to run on : true | false")
 ```
 
+### the variables in `.env` files
+
 Within the `.env`files you can change the following variables : 
 
 - `example.env.global`
 
 ``` bash
+### GLOBAL ENV VARS
+
+APP_VERSION=0.4
+
 RUN_MODE=default
 DOCKER_MODE=docker_off
 AUTH_MODE=default
@@ -198,13 +204,33 @@ SERVER_NAME_TEST=True
 ### MONGO DB RELATED
 MONGODB_MODE=local
 
+### AUTH SPECS ENV VARS
+RSA_MODE=no
+ANOJWT_MODE=no
+ANTISPAM_MODE=no
+ANTISPAM_VAL=my-string-to-check
+
+SECURITY_PASSWORD_SALT=a-secret-security-pwd-salt
+
+JWT_SECRET_KEY=a-secret-jwt-key
+JWT_ACCESS_TOKEN_EXPIRES=720
+JWT_REFRESH_TOKEN_EXPIRES=10
+JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES=15
+JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES=7
+JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES=1
+
+JWT_RENEW_REFRESH_TOKEN_AT_LOGIN=true
+REDIRECTION_FRONT_PREPROD=http://preprod.toktok.co-demos.com
+REDIRECTION_FRONT_PROD=http://toktok.co-demos.com
+
 ```
 
 - `example.env.mongodb`
 
 ``` bash
-
+### MONGODB ENV VARS
 ### to build mongodb URI
+
 MONGO_ROOT_LOCAL=localhost
 MONGO_ROOT_DOCKER=host.docker.internal
 MONGO_PORT_LOCAL=27017
@@ -229,4 +255,20 @@ MONGO_COLL_TAGS=tags
 MONGO_COLL_USERS=users
 MONGO_COLL_LICENCES=licences
 MONGO_COLL_JWT_BLACKLIST=jwt_blacklist
+```
+
+
+- `example.env.mailing`
+
+``` bash
+### MAILING ENV VARS
+
+MAIL_SERVER=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USE_TLS=False
+MAIL_USE_SSL=True
+MAIL_USERNAME=XXX.XXX@XXX.com
+MAIL_PASSWORD=XXXXX
+MAIL_ADMINS=XXXX.XXXX@gmail.com,YYYY.YYYY@gmail.com
+MAIL_DEFAULT_SENDER=XXXX.XXXX@gmail.com
 ```
