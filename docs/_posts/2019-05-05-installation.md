@@ -50,7 +50,7 @@ You have two different options to run (locally) Toktok on your computer/server :
     - set up UFW, GIT, NGINX, ...
     - (optional) [install MongoDB](https://docs.mongodb.com/manual/installation/) (if the Toktok's DB for config is hosted on your own server)
     - add the github repo
-    - create and set of secret env variables at the project's folder root based on `example.env.global` and `example.env.mongodb`
+    - create and set of secret env variables at the project's folder root based on `example.env.global`, `example.env.mailing` and `example.env.mongodb`
     - lauch docker and run the command : 
       ```sh
       make up-prod
@@ -136,11 +136,13 @@ The environment variables are stored in a couple of files at the root of the pro
 
 - `example.env.global`
 - `example.env.mongodb`
+- `example.env.mailing`
 
 If you want or need to use Apiviz in production you will have to duplicate those files at the same level with those new names : 
 
 - `.env.global`
 - `.env.mongodb`
+- `.env.mailing`
 
 ... then you will be able to change the environment variable you want and begin to use all of the available arguments like :
 

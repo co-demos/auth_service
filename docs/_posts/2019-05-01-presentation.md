@@ -50,7 +50,9 @@ Toktok includes "out-the-box" some classic features related to user authenticati
 - confirm email (optionnal in dev mode): confirm user by sending a confirmation link (protected) in an email 
 - password forgotten by sending a link (protected) in an email with redirection to new password form 
 - reset password from client interface (protected) ...
-- Documentation on all API endpoints with Swagger (and some patience from the developers)
+
+### Documentation 
+	- on all API endpoints with Swagger (and some patience from the developer)
 
 ### Features TO DO  :
 - user : 
