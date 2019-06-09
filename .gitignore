@@ -122,4 +122,4 @@ venv.bak/
 .mypy_cache/
 
 # Jekyll docs
-/_site
+docs/_site

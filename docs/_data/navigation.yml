@@ -33,6 +33,15 @@ docs:
       - title: "Install the docs"
         url: /guide/install-docs
 
+  - title: API
+    children:
+      - title: "Concepts"
+        url: /api/concepts
+      - title: "Authentication"
+        url: /api/authentication
+      - title: "Users"
+        url: /api/users
+
   - title: Developers
     children:
       - title: "Stack"

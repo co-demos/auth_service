@@ -21,7 +21,7 @@ You have two different options to run (locally) Toktok on your computer/server :
 --------
 
 
-### _WITH DOCKER - LOCALLY
+### WITH DOCKER - LOCALLY
 
 
 - **locally - in your browser check this url**
@@ -50,7 +50,7 @@ You have two different options to run (locally) Toktok on your computer/server :
     - set up UFW, GIT, NGINX, ...
     - (optional) [install MongoDB](https://docs.mongodb.com/manual/installation/) (if the Toktok's DB for config is hosted on your own server)
     - add the github repo
-    - create and set of secret env variables at the project's folder root based on `example.env.global` and `example.env.mongodb`
+    - create and set of secret env variables at the project's folder root based on `example.env.global`, `example.env.mailing` and `example.env.mongodb`
     - lauch docker and run the command : 
       ```sh
       make up-prod
@@ -136,11 +136,13 @@ The environment variables are stored in a couple of files at the root of the pro
 
 - `example.env.global`
 - `example.env.mongodb`
+- `example.env.mailing`
 
 If you want or need to use Apiviz in production you will have to duplicate those files at the same level with those new names : 
 
 - `.env.global`
 - `.env.mongodb`
+- `.env.mailing`
 
 ... then you will be able to change the environment variable you want and begin to use all of the available arguments like :
 
@@ -177,11 +179,17 @@ At the CLI level you can use :
 @click.option('--https', default="false", nargs=1, help="The <https> mode you want the app to run on : true | false")
 ```
 
+### the variables in `.env` files
+
 Within the `.env`files you can change the following variables : 
 
 - `example.env.global`
 
 ``` bash
+### GLOBAL ENV VARS
+
+APP_VERSION=0.4
+
 RUN_MODE=default
 DOCKER_MODE=docker_off
 AUTH_MODE=default
@@ -198,13 +206,33 @@ SERVER_NAME_TEST=True
 ### MONGO DB RELATED
 MONGODB_MODE=local
 
+### AUTH SPECS ENV VARS
+RSA_MODE=no
+ANOJWT_MODE=no
+ANTISPAM_MODE=no
+ANTISPAM_VAL=my-string-to-check
+
+SECURITY_PASSWORD_SALT=a-secret-security-pwd-salt
+
+JWT_SECRET_KEY=a-secret-jwt-key
+JWT_ACCESS_TOKEN_EXPIRES=720
+JWT_REFRESH_TOKEN_EXPIRES=10
+JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES=15
+JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES=7
+JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES=1
+
+JWT_RENEW_REFRESH_TOKEN_AT_LOGIN=true
+REDIRECTION_FRONT_PREPROD=http://preprod.toktok.co-demos.com
+REDIRECTION_FRONT_PROD=http://toktok.co-demos.com
+
 ```
 
 - `example.env.mongodb`
 
 ``` bash
-
+### MONGODB ENV VARS
 ### to build mongodb URI
+
 MONGO_ROOT_LOCAL=localhost
 MONGO_ROOT_DOCKER=host.docker.internal
 MONGO_PORT_LOCAL=27017
@@ -229,4 +257,20 @@ MONGO_COLL_TAGS=tags
 MONGO_COLL_USERS=users
 MONGO_COLL_LICENCES=licences
 MONGO_COLL_JWT_BLACKLIST=jwt_blacklist
+```
+
+
+- `example.env.mailing`
+
+``` bash
+### MAILING ENV VARS
+
+MAIL_SERVER=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USE_TLS=False
+MAIL_USE_SSL=True
+MAIL_USERNAME=XXX.XXX@XXX.com
+MAIL_PASSWORD=XXXXX
+MAIL_ADMINS=XXXX.XXXX@gmail.com,YYYY.YYYY@gmail.com
+MAIL_DEFAULT_SENDER=XXXX.XXXX@gmail.com
 ```
