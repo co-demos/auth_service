@@ -32,16 +32,16 @@ from flask_socketio import SocketIO
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 
 @click.command()
-@click.option('--mode', default="dev", nargs=1, help="The <mode> you need to run the app : dev (default), dev_email, prod, preprod" )
-@click.option('--docker',  default="docker_off", nargs=1,  help="Are you running the app with <docker> : docker_off | docker_on" )
-@click.option('--host', default="localhost", nargs=1,  help="The <host> name you want the app to run on : localhost(default) | <IP_NUMBER> " )
-@click.option('--port', default="4100", nargs=1,  help="The <port> number you want the app to run on : 4100 (default) | <PORT_NUMBER>")
-@click.option('--mongodb', default="local", nargs=1,  help="The <mongodb> you need to run the app : local | distant | server" )
-@click.option('--rsa', default="no", nargs=1,  help="The <rsa> mode (RSA encrypt/decrypt for forms), protects '/login' + '/register' + '/password_forgotten' + '/reset_password': 'no' (default), 'yes'" )
-@click.option('--anojwt', default="no", nargs=1, help="The <anojwt> mode (needs an anonymous JWT for login and register routes), affects '/login' + '/register' + '/password_forgotten' : 'no' (default), 'yes'" )
+@click.option('--mode',     default="dev", nargs=1, help="The <mode> you need to run the app : dev (default), dev_email, prod, preprod" )
+@click.option('--docker',   default="docker_off", nargs=1,  help="Are you running the app with <docker> : docker_off | docker_on" )
+@click.option('--host',     default="localhost", nargs=1,  help="The <host> name you want the app to run on : localhost(default) | <IP_NUMBER> " )
+@click.option('--port',     default="4100", nargs=1,  help="The <port> number you want the app to run on : 4100 (default) | <PORT_NUMBER>")
+@click.option('--mongodb',  default="local", nargs=1,  help="The <mongodb> you need to run the app : local | distant | server" )
+@click.option('--rsa',      default="no", nargs=1,  help="The <rsa> mode (RSA encrypt/decrypt for forms), protects '/login' + '/register' + '/password_forgotten' + '/reset_password': 'no' (default), 'yes'" )
+@click.option('--anojwt',   default="no", nargs=1, help="The <anojwt> mode (needs an anonymous JWT for login and register routes), affects '/login' + '/register' + '/password_forgotten' : 'no' (default), 'yes'" )
 @click.option('--antispam', default="no", nargs=1, help="The <antispam> mode (add hidden field check for forms) protects '/login' + '/register' + '/password_forgotten' : 'no' (default), 'yes'" )
 @click.option('--antispam_val', default="", nargs=1, help="The <antispam_val> to check in forms against spams : '' (default), <your-string-to-check>" )
-@click.option('--https', default="false", nargs=1, help="The <https> mode you want the app to run on : true | false")
+@click.option('--https',    default="false", nargs=1, help="The <https> mode you want the app to run on : true | false")
 def app_runner(mode, docker, host, port, mongodb, rsa, anojwt, antispam, antispam_val, https) : 
 
   """ 
