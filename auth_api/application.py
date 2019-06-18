@@ -102,10 +102,10 @@ def create_app(
 
 
   ### append SALT / ANOJWT / ANTISPAM / ANTISPAM_VAL env vars to config 
-  app.config["RSA_MODE"]         = RSA_mode
-  app.config["ANOJWT_MODE"]      = anojwt_mode
-  app.config["ANTISPAM_MODE"]    = antispam_mode
-  app.config["ANTISPAM_VALUE"]   = antispam_value
+  # app.config["RSA_MODE"]         = RSA_mode
+  # app.config["ANOJWT_MODE"]      = anojwt_mode
+  # app.config["ANTISPAM_MODE"]    = antispam_mode
+  # app.config["ANTISPAM_VALUE"]   = antispam_value
 
   print()
   log.debug("... app.config :\n %s", pformat(app.config))

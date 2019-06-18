@@ -140,6 +140,7 @@ class BaseConfig(object):
     os.environ["DOMAIN_NAME"]   = http_mode + "://" + DOMAIN_ROOT + ":" + str(DOMAIN_PORT)
     DOMAIN_NAME =  os.getenv("DOMAIN_NAME")
 
+  HTTPS_MODE = http_mode
 
   TEMPLATES_FOLDER   = "/templates"
   ROOT_FOLDER        = os.getcwd()
@@ -148,6 +149,13 @@ class BaseConfig(object):
   UPLOADS_DATA       = UPLOADS_FOLDER+"/data_sources"
   
   # used for encryption and session management
+  
+  """ OPTIONS ENCRYPTION / PROTECTION """
+  RSA_MODE       = os.getenv('RSA_MODE')
+  ANOJWT_MODE    = os.getenv('ANOJWT_MODE')
+  ANTISPAM_MODE  = os.getenv('ANTISPAM_MODE')
+  ANTISPAM_VALUE = os.getenv('ANTISPAM_VALUE')
+  HTTPS_MODE     = os.getenv('HTTPS_MODE')
 
   """ RESTPLUS CONFIG """
   SWAGGER_UI_DOC_EXPANSION      = 'list'
@@ -178,10 +186,10 @@ class BaseConfig(object):
   JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES      = timedelta(minutes=JWT_ANONYMOUS_REFRESH_TOKEN_EXPIRES_VAL)
 
   JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES_VAL  = formatEnvVar("JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES", format_type='integer')
-  JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES  = timedelta(days=JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES_VAL)
+  JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES      = timedelta(days=JWT_CONFIRM_EMAIL_REFRESH_TOKEN_EXPIRES_VAL)
 
   JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES_VAL  = formatEnvVar("JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES", format_type='integer')
-  JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES       = timedelta(days=JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES_VAL)  
+  JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES      = timedelta(days=JWT_RESET_PWD_ACCESS_TOKEN_EXPIRES_VAL)  
   # beware not putting anything in JWT_HEADER_TYPE like 'Bearer', 
   # otherwise @jwt_required will look for an Authorization : Bearer <JWT> / 
   # not very comptatible with Flask-RestPlus authorization schemas described in _auth.authorizations.py

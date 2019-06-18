@@ -109,10 +109,16 @@ def app_runner(mode, docker, host, port, mongodb, rsa, anojwt, antispam, antispa
   load_dotenv(env_path_mailing, verbose=True)
 
   ### OVERIDE AND SET UP ENV VARS FROM CLI 
-  os.environ["DOMAIN_ROOT"]   = host
-  os.environ["DOMAIN_PORT"]   = port
-  os.environ["DOCKER_MODE"]   = docker
-  os.environ["MONGODB_MODE"]  = mongodb
+  os.environ["DOMAIN_ROOT"]    = host
+  os.environ["DOMAIN_PORT"]    = port
+  os.environ["DOCKER_MODE"]    = docker
+  os.environ["MONGODB_MODE"]   = mongodb
+
+  os.environ["RSA_MODE"]       = rsa
+  os.environ["ANOJWT_MODE"]    = anojwt
+  os.environ["ANTISPAM_MODE"]  = antispam
+  os.environ["ANTISPAM_VALUE"] = antispam_val
+  os.environ["HTTPS_MODE"]     = https
 
 
   log.debug("\n--- STARTING TOKTOK AUTH API ---\n")
