@@ -168,16 +168,16 @@ class BaseConfig(object):
 
   """ SHARED JWT SECRET KEY : this key must be shared with openscraper and auth api """
 
-  JWT_SECRET_KEY                = os.getenv("JWT_SECRET_KEY") # "a_key_youhouuuuuuu"
-  JWT_HEADER_NAME               = "Authorization" #"X-API-KEY"
-  JWT_TOKEN_LOCATION            = ["headers", "query_string"]
-  JWT_QUERY_STRING_NAME         = "token"
+  JWT_SECRET_KEY        = os.getenv("JWT_SECRET_KEY") # "a_key_youhouuuuuuu"
+  JWT_HEADER_NAME       = os.getenv("JWT_HEADER_NAME") # "Authorization" #"X-API-KEY"
+  JWT_TOKEN_LOCATION    = formatEnvVar("JWT_TOKEN_LOCATION", format_type="list") # ["headers", "query_string"]
+  JWT_QUERY_STRING_NAME = os.getenv("JWT_HEADER_NAME") # "token"
 
   JWT_ACCESS_TOKEN_EXPIRES_VAL  = formatEnvVar("JWT_ACCESS_TOKEN_EXPIRES", format_type='integer')
   JWT_ACCESS_TOKEN_EXPIRES      = timedelta(minutes=JWT_ACCESS_TOKEN_EXPIRES_VAL) # minutes=15
   
   JWT_REFRESH_TOKEN_EXPIRES_VAL  = formatEnvVar("JWT_REFRESH_TOKEN_EXPIRES", format_type='integer')
-  JWT_REFRESH_TOKEN_EXPIRES     = timedelta(days=JWT_REFRESH_TOKEN_EXPIRES_VAL*365)  
+  JWT_REFRESH_TOKEN_EXPIRES      = timedelta(days=JWT_REFRESH_TOKEN_EXPIRES_VAL*365)  
 
   # JWT_IDENTITY_CLAIM          = "_id"
   ### custom JWT expirations
