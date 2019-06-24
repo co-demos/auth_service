@@ -365,11 +365,11 @@ open_level_edit_       = {
 ### preformat some generic fields
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 update_field    = {
-  "edit_auth"      : edit_auth,
-  "doc_type"      : doc_type,
-  "add_to_list"    : add_to_list,
+  "edit_auth" : edit_auth,
+  "doc_type" : doc_type,
+  "add_to_list" : add_to_list,
   
-  "field_to_update"  : field_to_update,
-  "field_value"     : field_value,
+  "field_to_update" : field_to_update,
+  "field_value" : field_value,
 }
 
