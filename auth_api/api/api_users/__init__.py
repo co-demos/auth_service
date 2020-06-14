@@ -21,13 +21,13 @@ blueprint = Blueprint( 'api_users', __name__, template_folder=app.config["TEMPLA
 ### create API
 # api = Api( 	blueprint,
 api = Custom_API( blueprint,
-						title						= "TokTok / Auth API : USERS",
-						version	        = app.config["APP_VERSION"],
-						description			= app.config["CODE_LINK"] + " : create, list, delete, edit... users",
-						doc							= '/documentation',
-						default					= 'register',
-						authorizations	= auth_check,
-						# security='apikey' # globally ask for pikey auth
+  title						= "TokTok / Auth API : USERS",
+  version	        = app.config["APP_VERSION"],
+  description			= app.config["CODE_LINK"] + " : create, list, delete, edit... users",
+  doc							= '/documentation',
+  default					= 'register',
+  authorizations	= auth_check,
+  # security='apikey' # globally ask for pikey auth
 )
 
 
@@ -35,11 +35,11 @@ api = Custom_API( blueprint,
 
 @api.errorhandler
 def default_error_handler(e):
-		message = 'An unhandled exception occurred.'
-		log.exception(message)
+    message = 'An unhandled exception occurred.'
+    log.exception(message)
 
-		if not app.config["FLASK_DEBUG"]:
-				return {'message': message}, 500
+    if not app.config["FLASK_DEBUG"]:
+        return {'message': message}, 500
 
 
 # @api.errorhandler(NoResultFound)

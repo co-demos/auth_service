@@ -87,9 +87,6 @@ class Usr_edit(Resource) :
 		log.debug("updated_doc : \n%s ", pformat(updated_doc) )
 
 		### return updated document
-		# return {
-		# 	"msg" : "updating doc...."
-		# }, 200
 		return updated_doc, response_code
 
 

@@ -187,18 +187,18 @@ u_data        = fields.Raw(
 ### FOR GENERIC MODELS
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 user_data = {
-  "data"         : generic_data,
+  "data" : generic_data,
 }
 
 user_identity = {
-  "email"         : email,
+  "email" : email,
 }
 
 user_pwd = {
-  "pwd"             : pwd,
+  "pwd" : pwd,
 }
 user_pwd_encrypted = {
-  "pwd_encrypt"    : pwd_encrypt,
+  "pwd_encrypt" : pwd_encrypt,
 }
 
 user_login = {
@@ -206,15 +206,15 @@ user_login = {
   "pwd_encrypt"    : pwd_encrypt,
 }
 user_login_nosalt = {
-  "email"     : email,
-  "pwd"        : pwd,
+  "email" : email,
+  "pwd"   : pwd,
 }
 
 user_basics = {
-  "name"         : name,
-  "surname"     : surname,
-  "email"       : email,
-  "pseudo"      : pseudo,
+  "name"    : name,
+  "surname" : surname,
+  "email"   : email,
+  "pseudo"  : pseudo,
 }
 user_basics_light = {
   "pseudo"      : name,
@@ -248,17 +248,17 @@ old_refresh_token = {
 ### FOR MODELS TO INSERT IN DB
 ### + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + ###
 user_auth_in = {
-  "pwd"            : pwd,
+  "pwd"           : pwd,
   "conf_usr"      : confirmed_usr,
   "role"          : role,
-  # "acc_tok"      : acc_tok,
+  # "acc_tok"     : acc_tok,
   "refr_tok"      : refr_tok,
   "is_blacklisted": is_blacklisted,
 }
 
 usr_profile_ = {
   "lang"            : language,
-  "agreement"        : agreement,
+  "agreement"       : agreement,
   "usr_view"        : usr_view,
   "usr_profiles"    : usr_profiles,
 }
